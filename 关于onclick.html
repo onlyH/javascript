@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn1" id="btn1" value="按钮" />
+		<script type="text/javascript">
+			var oBth = document.getElementById('btn1');
+			function abc(){
+				alert('触发啦');
+			}
+			oBth.onclick=abc;
+		</script>
+		<!--function()    匿名函数
+			oBtn.onclick=function(){
+				alert("a");
+			}-->
+	</body>
+</html>

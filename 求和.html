@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="text1" id="text1" value="" />
+		<input type="text" name="" id="text2" value="" />
+		<input type="button" name="btn" id="btn" value="求和" />
+		<script type="text/javascript">
+			window.onload=function(){
+				var AA = document.getElementById('text1');
+				var BB = document.getElementById('text2');
+				var CC = document.getElementById('btn');
+				
+				btn.onclick=function(){
+					alert(parseInt(AA.value)+ parseInt(BB.value));
+				//parseInt从左到右检查到就返回，字符串转数字
+				
+				}
+			}
+		</script>
+	</body>
+</html>

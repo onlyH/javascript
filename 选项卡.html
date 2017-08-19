@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#aa div{
+				width: 200px;
+				height: 100px;
+				background: #CCCCCC;
+				border: 1px solid #000000;
+				display: none;
+			}
+			.color{
+				background: #ADFF2F;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var AA = document.getElementById('aa');
+				var BB = AA.getElementsByTagName('input');
+				var CC = AA.getElementsByTagName('div');
+				
+				
+					for(var i=0; i<BB.length;i++){
+						BB[i].index=i;  //重点
+						BB[i].onclick=function(){
+							//alert(this.value) 
+							for(var i=0; i<BB.length;i++){
+								BB[i].className='';
+								CC[i].style.display="none";
+							}
+						this.className='color';
+						CC[this.index].style.display="block";
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="aa">
+		<input type="button" name="" id="div1" value="形状" class="color" />
+		<input type="button" name="" id="div2" value="颜色" />
+		<input type="button" name="" id="div3" value="大小" />
+		<div style="display: block;">111</div>
+		<div>222</div>
+		<div>333</div>
+		</div>
+	</body>
+</html>

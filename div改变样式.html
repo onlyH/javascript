@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background: #CCCCCC;
+			}
+		</style>
+		<script type="text/javascript">
+			function setVary(name,value){
+				var oDiv = document.getElementById('div1');
+				oDiv.style[name]=value;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="变宽" onclick="setVary('width','300px')"/>
+		<input type="button" name="" id="" value="变高" onclick="setVary('height','400px')"/>
+		<input type="button" name="" id="" value="变色" onclick="setVary('background','#000000')"/>
+		<p id="div1"></p>
+	</body>
+</html>

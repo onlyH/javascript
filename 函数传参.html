@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				background: #CCCCCC;
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+		<script type="text/javascript">
+			function set(color){
+				var oDiv = document.getElementById('div1');
+				oDiv.style.background=color;
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="green" onclick="set('green')"/>
+		<input type="button" name="" id="" value="red" onclick="set('red')"/>
+		<input type="button" name="" id="" value="blue" onclick="set('blue')"/>
+		<p id="div1"></p>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="" id="btn1" value="全选" />
+		<input type="button" name="" id="btn2" value="反选" />
+		<input type="button" name="" id="btn3" value="不选" />
+		<div id="Op">
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		</div>
+		<script type="text/javascript">
+			
+			window.onload=function(){
+				var oDiv1 = document.getElementById('btn1');
+				var oDiv2 = document.getElementById('btn2');
+				var oDiv3 = document.getElementById('btn3');
+				var oD = document.getElementById('Op');
+				var Opation = oD.getElementsByTagName('input');	
+			
+			oDiv1.onclick=function(){
+				for (var i=0; i<Opation.length; i++) {
+					Opation[i].checked=true;
+				}
+			}
+			oDiv2.onclick=function(){
+				for(var i=0; i<Opation.length;i++){
+					Opation[i].checked=false;
+				}
+				}
+			oDiv3.onclick=function(){
+				for(var i=0; i<Opation.length;i++){
+					if(Opation[i].checked==true){
+						Opation[i].checked=false;
+					}else{
+						Opation[i].checked=true;
+					}
+				}
+			}
+			}
+		</script>
+	</body>
+</html>

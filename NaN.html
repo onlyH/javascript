@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt1" id="txt1" value="" />
+		<input type="text" name="txt1" id="txt2" value="" />
+		<input type="button" name="btn"id="btn"value="button" />
+		<script type="text/javascript">
+			window.onload=function(){
+				var txt1 = document.getElementById('txt1');
+				var txt2 = document.getElementById('txt2');
+				var btn = document.getElementById('btn');
+				btn.onclick=function(){
+					if(isNaN(txt1.value)){
+						alert('您输入第一个的不是数字');
+					}else if(isNaN(txt2.value)){
+						alert("您输入的第二个不是数字");
+					}else{
+						alert(parseInt(txt1.value)+parseInt(txt2.value));
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
