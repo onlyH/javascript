@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<ul id="demo">
+			<li>2</li>
+			<li> 3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6 </li>
+			<li>7 </li>
+		</ul>
+		<div id="box">
+			<input type="button" id="add" value="add" />
+			<input type="button" id="remove" value="remove" />
+			<input type="button" id="move" value="move" />
+			<input type="button" id="select" value="select" />
+		</div>
+		<div id="btn">
+			<ul id="ull">
+				<li>11</li>
+				<li>22</li>
+				<li>33</li>
+				<li>44</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			/*var oul = document.getElementById('demo');
+												var oli = oul.getElementsByTagName('li');
+												for(var i = 0 ; i<oli.length;i++){
+													oli[i].onclick = function(){
+														alert(123);
+													}
+												}*/
+			//Event对象提供了一个属性叫target，可以返回事件的目标节点，我们成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom，当然，这个是有兼容性的，标准浏览器用ev.target，IE浏览器用event.srcElement，此时只是获取了当前节点的位置，并不知道是什么节点名称，这里我们用nodeName来获取具体是什么标签名，这个返回的是一个大写的，我们需要转成小写再做比较（习惯问题），IE里获取发生事件的DOM节点用的是event.srcElement：
+			window.onload = function() {　　
+				var oUl = document.getElementById("demo");　　
+				oUl.onclick = function(ev) {　　　　
+					var ev = ev || window.event;　　　　
+					var target = ev.target || ev.srcElement;　　　　
+					if(target.nodeName.toLowerCase() == 'li') {　　　　　　　
+						alert(123);　　　　　　　
+						alert(target.innerHTML);　　　　
+					}　　
+				}
+			}
+			var oBox = document.getElementById('box');
+			box.onclick = function(ev) {
+				var ev = ev || window.event;
+				var target = ev.target || ev.srcElement;
+				if(target.nodeName.toLowerCase() == 'input') {
+					switch(target.id) {
+						case 'add':
+							alert('add');
+							break;
+						case 'remove':
+							alert('remove');
+							break;
+						case 'more':
+							alert('more');
+							break;
+						case 'select':
+							alert('select');
+							break;
+					}
+				}
+			}
+			//事件委托，添加的子元素也有事件
+			var oBtn = document.getElementById('btn');
+			var oUl = document.getElementById('ull');
+			var oLi = oUl.getElementsByTagName('li');
+			oUl.onmouseover = function(ev) {
+				var ev = ev || window.event;
+				var target = ev.target || ev.srcElement;
+				if(target.nodeName.toLowerCase() == 'li') {
+					target.style.backgroud = 'red'
+				}
+			}
+			oUl.onmouseout = function(ev) {
+				var ev = ev || window.event;
+				var target = ev.target || ev.srcElement;
+				if(target.nodeName.toLowerCase() == 'li') {
+					target.style.backgroud = "#eee";
+				}
+			}
+			//添加新节点
+			oBtn.onclick = function() {
+				num++;
+				var aLi = document.createElement('li');
+				aLi.innerHTML = 111 * num;
+				oUl.appendChild(oLi);
+			}
+
+			//适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。
+		</script>
+	</body>
+
+</html>
