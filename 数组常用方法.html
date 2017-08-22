@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//构造函数,无参，有参，初始化
+			var abc = new Array();
+			var def = new Array(5);
+			var hij = new Array('aa','bb','cc',new Date());
+			
+			//字面量
+			var ab = [];
+			var bc = [10];
+			//在使用构造函数创建数组时如果传入一个数字参数，则会创建一个长度为参数的数组，如果传入多个，则创建一个数组，参数作为初始化数据加到数组中
+			var ab = new Array(5);
+			console.log(ab.length);   //5
+			
+			var bc = new Array(2,3);
+			console.log(bc.length);   //2
+			
+			//数组的值可以通过自然数索引访问进行读写操作，下标也可以是一个得出非负整数的变量或表达式
+			var a = [12,33,43,25];
+			console.log(a[0]);    //12
+			var i = 1;
+			console.log(a[i]);    //33
+			//数组也是对象，我们可以使用索引的奥秘在于，数组会把索引值转换为对应字符串（1=>”1”）作为对象属性名
+			console.log(4 in a)  //true
+			console.log(5 in a)   //false
+			
+			//索引特殊性在于数组会自动更新length属性，当然因为JavaScript语法规定数字不能作为变量名，所以我们不能显示使用array.1这样的格式。由此可见其实负数，甚至非数字”索引“都是允许的，只不过这些会变成数组的属性，而不是索引
+			var ab = new Array(1,2,3,4);
+			a[100] = 100;
+			console.log(a.length)      //100
+			console.log(a[4])     //undefined
+			console.log(a[99]);     //undefined
+			console.log(a[100])     //100
+			//当强制把数组的length属性值设置为小于等于最大index值时，数组会自动删除indexd大于等于length的数据
+			a.length = 2;
+			console.log(a)     //[1,2]
+			//这时候会发现a[2]和a[100]被自动删除了，同理，如果把length设置为大于最大index+1的值的时候，数组也会自动扩张，但是不会为数组添加新元素，只是在尾部追加空空间
+			a.length = 5;
+			console.log(a);     //[1,2]后面没有三个undefined
+			//添加删除
+			var a = [1,2,3,4];
+			a[4] =5;
+			console.log(a);      //1,2,3,4,5
+			delete a[2];
+			console.log(a[2])     //undefined  不会改变数组长度，也不会改变其他数据的index和value对应关系
+			//pop和push能够让我们使用堆栈那样先入后出使用数组
+			var a = [1,2,3,4,5,6,7];
+			a.push(8)      //(8) [1, 2, 3, 4, 5, 6, 7, 8]
+			console.log(a.length); //8
+			a.pop();
+			console.log(a)    //(7) [1, 2, 3, 4, 5, 6, 7]
+			console.log(a.length);   //7
+			//，shift方法可以删除数组index最小元素，并使后面元素index都减一，length也减一，这样使用shift/push就可以模拟队列了，当然与shift方法对应的有一个unshift方法，用于向数组头部添加一个元素   头加头减
+			var a = [1,2,3,4,5,6,7];
+			a.shift();
+			console.log(a);     //(6) [2, 3, 4, 5, 6, 7]
+			a.unshift(7); 
+			console.log(a);      //(7) [7, 2, 3, 4, 5, 6, 7]
+			//splice方法用于一次性解决数组添加、删除（这两种方法一结合就可以达到替换效果），方法有三个参数:1.开始索引,2.删除元素的位移,3.插入的新元素，当然也可以写多个,splice方法返回一个由删除元素组成的新数组，没有删除则返回空数组
+			//var a = [1,2,3,4,5,6,7];
+			a.splice(2,3,9)    //(3) [3, 4, 5]
+			console.log(a);     //(5) [1, 2, 9, 6, 7]
+			//如果数组索引不是从0开始的
+			var a=new Array();
+				a[2]=2;
+				a[3]=3;
+				a[7]=4;
+				a[8]=5;
+			console.log(a.splice(3,4)); //[3] 
+	        console.log(a.length); //5
+	        console.log(a); //[2: 2, 3: 4, 4: 5]
+	        //splice的第一个参数是绝对索引值，而不是相对于数组索引，第二个参数并不是删除元素的个数，而是删除动作执行多少次，并不是按数组实际索引移动，而是连续移动。同时调整后面元素索引，前面索引不理会
+	        //只要方法第二个参数，也就是删除动作执行的次数设为0，第三个参数及以后填写要插入内容就splice就能执行插入操作，而如果第二个参数不为0则变成了先在该位置删除再插入，也就是替换效果
+	        
+	        var a = [1,2,3,4,5,6,7];
+	        a.splice(2,0,45,67);    //(9) [1, 2, 45, 67, 3, 4, 5, 6, 7]
+	        a.splice(2,3,4)     //a.splice(2,3,4)
+			console.log(a);       //(7) [1, 2, 4, 4, 5, 6, 7]
+			//join(char)这个方法在C#等语言中也有，作用是把数组元素（对象调用其toString()方法）使用参数作为连接符连接成一字符串
+			var a = [1,2,3,4,5,6,7];
+			a.join('');      //"1234567"
+			a.join('.');        //"1.2.3.4.5.6.7"
+			a.join('!');        // "1!2!3!4!5!6!7"
+			
+			
+			var a = [23,45,26,75];
+			a.slice(1,2)     //45
+			a.slice(3,4)     //75
+			a.slice(1,4)   //(3) [45, 26, 75]
+			a.slice(2,-1)    //[26]
+			a.slice(1,-1)   //(2) [45, 26]
+			//拼接
+			var a = [23,45,26,75];
+			var b = [2,3,4,5]
+			a.concat(b)     //(8) [23, 45, 26, 75, 2, 3, 4, 5]
+			console.log(a)    // (4) [23, 45, 26, 75]
+			console.log(b)    //1 (4) [2, 3, 4, 5]
+			
+			//逆序
+			
+			var a = [1,2,3,4,5,6,7];
+			a.reverse()     //(7) [7, 6, 5, 4, 3, 2, 1]
+			//如果索引不是从0开始需要注意
+			
+			//排序
+			var a=new Array(1,2,3,4,5,6,7);
+	       a.sort(function (num1,num2)
+	       {
+	       	return num2-num1
+	       });
+	       console.log(a)   //(7) [7, 6, 5, 4, 3, 2, 1]
+	       
+	       //for 遍历数组
+	       var arr = [12.5,3,4,5,6];
+	       for(var i = 0; i<arr.length;i++){
+	       	arr[i] = arr[i]/2.0
+	       }
+	       console.log(arr)     //(5) [6.25, 1.5, 2, 2.5, 3]
+	       
+	       //for in 循环遍历数组
+	       var my = ['aa','bb','cc'];
+	       for(var i in my){
+	       	console.log(my[i])
+	       }                         // aa bb cc
+	       
+	       //js数组与字符串的相互转换方法
+	       var a = [1,2,3];
+	       a.join('-')    //1-2-3
+			//字符串转数组，实现方法为将字符串按某个字符切割成若干个字符串，并以数组形式返回，示例代码如下：
+			var a = 'aa,cc,vv';
+			a.split(',')   //(3) ["aa", "cc", "vv"]
+			
+
+			
+
+			</script>
+	</body>
+</html>

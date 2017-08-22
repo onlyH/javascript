@@ -9,84 +9,189 @@
 	<body>
 		<script type="text/javascript">
 			/*
-						var box = 20;      //十进制
-						alert(box);
+				var box = 20;      //十进制
+				alert(box);
 
-						var box = 20;      //十进制
-						alert(box);
+				var box = 20;      //十进制
+				alert(box);
 
-						var box = 070 ;  //八进制，必须前面是0，后面是0到7序列
-						alert(box);
+				var box = 070 ;  //八进制，必须前面是0，后面是0到7序列
+				alert(box);
 
-						var box = 079;    //无效八进制
+				var box = 079;    //无效八进制
 
-						var box = 0x1F; //十六进制，必须前面是0x，后面是0到9，A-F序列
-						alert(box);
-						   
-						alert(Number.MIN_VALUE);  //最小值
-						alert(Number.MAX_VALUE);   //最大值
+				var box = 0x1F; //十六进制，必须前面是0x，后面是0到9，A-F序列
+				alert(box);
+				   
+				alert(Number.MIN_VALUE);  //最小值
+				alert(Number.MAX_VALUE);   //最大值
 
-						var box = 100e1000;       //超出范围，infinity
-						alert(box)；
+				var box = 100e1000;       //超出范围，infinity
+				alert(box)；
 
-						var box = -100e1000;       //超出范围，-infinity
-						alert(box)；
-						
-						alert(Number.POSITIVE_INFINITY) //infinity
-						alert(Number.NEGATIVE_INFINITY) //-infinity
-						
-						var box = 100e1000;   //isFinite()函数判断是否超出范围,返回false或者true
-						alert(isFinite(box));
-						
-						var box = 0 / 0;       //NaN
-						alert(box);
-						
-						var box = 12 / 0;       //iInfinity
-						var box = 12 / 0 * 0      //NaN 
-						alert(Number.NaN);    //NaN
-						alert(NaN + 1);      //NaN
-						alert(NaN == NaN);    //false
-						
-						alert(isNaN(NaN));    //ture isNaN()判断是否为NaN，会尝试将值转换为数值
-						alert(isNaN(25));    //false
-						alert(isNaN('25'));   //false
-						alert(isNaN('lee'));   //true
-						alert(isNaN(true));    //false
-						
-						function sum(num1,num2){
-							return num1 +num2;
-						}
-						function num1(num2){
-							return num2 +10;
-						}
-						var abc = sum(num1(10),10);
-						alert(abc);
-						 
-							function abc(num){
-						if(num <1){
-							return 1;
-						}else{
-							return num*arguments.callee(num-1);        
-							
+				var box = -100e1000;       //超出范围，-infinity
+				alert(box)；
+				
+				alert(Number.POSITIVE_INFINITY) //infinity
+				alert(Number.NEGATIVE_INFINITY) //-infinity
+				
+				var box = 100e1000;   //isFinite()函数判断是否超出范围,返回false或者true
+				alert(isFinite(box));
+				
+				var box = 0 / 0;       //NaN
+				alert(box);
+				
+				var box = 12 / 0;       //iInfinity
+				var box = 12 / 0 * 0      //NaN 
+				alert(Number.NaN);    //NaN
+				alert(NaN + 1);      //NaN
+				alert(NaN == NaN);    //false
+				
+				alert(isNaN(NaN));    //ture isNaN()判断是否为NaN，会尝试将值转换为数值
+				alert(isNaN(25));    //false
+				alert(isNaN('25'));   //false
+				alert(isNaN('lee'));   //true
+				alert(isNaN(true));    //false
+				
+				function sum(num1,num2){
+					return num1 +num2;
+				}
+				function num1(num2){
+					return num2 +10;
+				}
+				var abc = sum(num1(10),10);
+				alert(abc);
+				 
+					function abc(num){
+				if(num <1){
+					return 1;
+				}else{
+					return num*arguments.callee(num-1);        
+					
+				}
+			}
+			    alert(abc(4));   //调用自身，实现递归
+				//在函数内部,有两个特殊的对象:arguments和this,arguments是一个类数组对象 ,包含着传入函数中的所有参数,主要用途是保存函数参数,但这个对象还有一个名叫callee的属性,该属性是一个指针,指向拥有这个arguments对象的函数
+
+
+				window是一个对象,而且是js里面最大的对象,是最外围的对象.
+				alert(typeof window); window 是对象,类型是对象
+				alert(this);    [object window]this目前表示的是window,因为在window范围之内
+				
+				
+				  function abc(num1,num2){
+					return num1+num2;
+				}
+				function def(num1,num2){   //call和apply可以冒充另外一个函数，实质上是为了扩充作用域
+					return abc.apply(this,[num1 +num2]);  //this表示window作用域，[]表示传递的参数
+				}
+				alert(abc(10,10))
+															
+								var abc = {
+						a:12,
+						b:'qwe',
+						c:function(){
+							return this.a+this.b;
 						}
 					}
-					    alert(abc(4));   //调用自身，实现递归
-						//在函数内部,有两个特殊的对象:arguments和this,arguments是一个类数组对象 ,包含着传入函数中的所有参数,主要用途是保存函数参数,但这个对象还有一个名叫callee的属性,该属性是一个指针,指向拥有这个arguments对象的函数
+					alert(abc.c());
 					
-					
-						window是一个对象,而且是js里面最大的对象,是最外围的对象.
-						alert(typeof window); window 是对象,类型是对象
-						alert(this);    [object window]this目前表示的是window,因为在window范围之内
-						
-						
-						  function abc(num1,num2){
-							return num1+num2;
-						}
-						function def(num1,num2){   //call和apply可以冒充另外一个函数，实质上是为了扩充作用域
-							return abc.apply(this,[num1 +num2]);  //this表示window作用域，[]表示传递的参数
-						}
-						alert(abc(10,10))
-						*/
+					function abc(arg1,arg2){
+								this.firstNum = arg1;
+								this.lastNum = arg2;
+							}
+							var ccc = new abc('sss','ddd');   //gouzao
+							alert(ccc.firstNum + ""+ ccc.lastNum);
+							
+							
+							function abc(a,b){
+								return a*b;
+							}
+							alert(abc.call(abc,10,2));
+							
+							function abc(a,b){
+									return a*b;
+								}
+								my = [10,2];
+								alert(abc.apply(abc,my));
+								var add = (function(){
+									var counter = 0;
+									return function(){
+										return counter += 1;   //计数器
+									}
+								}();
+								function my(){
+									document.getElementById('').innerHTML = add();
+									
+									var abc = new Object();
+								abc.first = 'aaa';
+								abc.last= 'bbb';
+								abc.age = 12;
+								abc.color = 'red';
+								document.write(abc.age+abc.color)
+								}
+								
+								
+								abc = {
+									age:12,
+									first:'aaa',
+									last:'bbb',
+									color:'red'
+								}
+								document.write(abc.age+abc.last)
+								
+								
+								function abc(eye,color,first,last){
+									this.eye = eye;
+									this.color = color;
+									this.first = first;
+									this.last = last;
+								}
+								my = new abc('double','red','aaa','bbb');
+								document.write(my.eye+my.color)
+								
+								function abc(eye,color,first,last){
+								this.eye = eye;
+								this.color = color;
+								this.first = first;
+								this.last = last;
+								this.def = def;
+								function def(name){
+									this.last = name;
+								}
+							}
+							my = new abc('red','blue','aaa','bbb');
+							my.def('ccc');
+							document.write(my.last+my.eye);
+							
+							
+							function abc(){
+								var i;
+								var t="";
+								var person = {
+									first:'aaa',
+									last:'bbb',
+									color:'blue',
+									age:12
+								}
+								for(i in person){
+									t = t+person[i];
+								}
+							}
+							document.getElementById('').innerHTML = t;
+							
+							
+							var abc = 12;
+							document.write(abc.toString(2));
+							document.write(abc.toString(8));
+							document.write(abc.toString(16));
+							
+							
+			var aa = [11,22,33,44];
+			for(var i = 0; i<aa.length;i++){
+			document.write(aa[i])
+			}
+								*/
 		</script>
 	</body>
 
