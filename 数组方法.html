@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+
 	<body>
 		<script type="text/javascript">
-			function abc(str,n){
-				return new Array(n+1).join(str)
+			function abc(str, n) {
+				return new Array(n + 1).join(str)
 			}
-			abc('a',3);//aaa
-			abc('4',8);//44444444
-			abc('hello',2) //hellohello
+			abc('a', 3); //aaa
+			abc('4', 8); //44444444
+			abc('hello', 2) //hellohello
 			//
-			a = [{age:2},{age:5},{age:4},{age:1},{age:11}];
-			a.sort(function (a1,b1){
-				return a1.age -b1.age;
+			a = [{
+				age: 2
+			}, {
+				age: 5
+			}, {
+				age: 4
+			}, {
+				age: 1
+			}, {
+				age: 11
+			}];
+			a.sort(function(a1, b1) {
+				return a1.age - b1.age;
 			})
-			a.forEach(function (item){
+			a.forEach(function(item) {
 				console.log(item.age)
 			})
 			//foreach数组遍历
-			var a = [2,1,4,2,8];
-			a.forEach(function(x,index,y){
-				console.log(x+'|'+index +'|'+(y ===a))
+			var a = [2, 1, 4, 2, 8];
+			a.forEach(function(x, index, y) {
+				console.log(x + '|' + index + '|' + (y === a))
 			})
 			//2|0|true
 			//1|1|true
@@ -31,90 +43,91 @@
 			//2|3|true
 			//8|4|true
 			//map数组映射
-			a = [1,2,3];
-			a.map(function(x){
-				return x+10;//11,12,13
+			a = [1, 2, 3];
+			a.map(function(x) {
+				return x + 10; //11,12,13
 			})
-			a;//1,2,3
-			
+			a; //1,2,3
+
 			//filter 数组过滤
-			var a = [1,2,3,4,5,6,7,8,9,10];
-			a.filter(function(x,index){
-				return index % 3 ===0 ||x >= 8;	//(6) [1, 4, 7, 8, 9, 10]
+			var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+			a.filter(function(x, index) {
+				return index % 3 === 0 || x >= 8; //(6) [1, 4, 7, 8, 9, 10]
 			})
-				//every 数组判断 每一个都要符合某一个条件
-			 var a= [1,2,3,4,5];
-			 a.every(function(x){
-			 	return x<4
-			 })   //false
-			 var a = [1,2,3,4,5];
-			 a.every(function(x){
-			 	return a<10;
-			 }) //true
-			 //只要任意一个元素符合某个条件
-			 var a = [1,2,3,4];
-			 a.some(function(x){
-			 	return x===3;//true
-			 	return x===100; //false
-			 })
-			 
-			 //reduce
-			 var a = [1,2,3,4];
-			 a.reduce(function(x,y){
-			 	return x+y
-			 },0)//10
-			 
-			 a = [1,2,3,4,7];
-			 var max = a.reduce(function(x,y){
-			 	console.log(x+'|'+y);
-			 	return x>y?x:y;
-			 })
-			 max; //7
-			 //1|2
-			 //2|3
-			 //3|4
-			 //4|7
+			//every 数组判断 每一个都要符合某一个条件
+			var a = [1, 2, 3, 4, 5];
+			a.every(function(x) {
+				return x < 4
+			}) //false
+			var a = [1, 2, 3, 4, 5];
+			a.every(function(x) {
+				return a < 10;
+			}) //true
+			//只要任意一个元素符合某个条件
+			var a = [1, 2, 3, 4];
+			a.some(function(x) {
+				return x === 3; //true
+				return x === 100; //false
+			})
+
+			//reduce
+			var a = [1, 2, 3, 4];
+			a.reduce(function(x, y) {
+				return x + y
+			}, 0) //10
+
+			a = [1, 2, 3, 4, 7];
+			var max = a.reduce(function(x, y) {
+				console.log(x + '|' + y);
+				return x > y ? x : y;
+			})
+			max; //7
+			//1|2
+			//2|3
+			//3|4
+			//4|7
 			//(5) [1, 2, 3, 4, 7]
-			a = [1,2,3,4,5];
-			var max = a.reduce(function(x,y){
-				console.log(x+'|'+y);
-				return x>y?x:y;
-			},0)
-			max;//5
+			a = [1, 2, 3, 4, 5];
+			var max = a.reduce(function(x, y) {
+				console.log(x + '|' + y);
+				return x > y ? x : y;
+			}, 0)
+			max; //5
 			//0|1
 			//1|2
 			//2|3
 			//3|4
 			//4|5
 			//(5) [1, 2, 3, 4, 5]
-			a = [1,3,2,6];
-			var max = a.reduceRight(function(x,y){
-				console.log(x+'|'+y);
-				return x>y?x:y;
+			a = [1, 3, 2, 6];
+			var max = a.reduceRight(function(x, y) {
+				console.log(x + '|' + y);
+				return x > y ? x : y;
 			})
-			max;//6
+			max; //6
 			//6|2
 			//6|3
 			//6|1
 			//(4) [1, 3, 2, 6]
-			
+
 			//indexOf 数组检索
-			var a = [1,2,3,2,1];
-			a.indexOf(2);//1
-			a.indexOf(99);//-1
-			a.indexOf(1,1)//4
-			a.indexOf(1,-3)//4
-			a.indexOf(2,-1)//-1
-			a.indexOf(2)//3
-			a.indexOf(2,-2);//3
-			a.indexOf(2,-3);//1
+			var a = [1, 2, 3, 2, 1];
+			a.indexOf(2); //1
+			a.indexOf(99); //-1
+			a.indexOf(1, 1) //4
+			a.indexOf(1, -3) //4
+			a.indexOf(2, -1) //-1
+			a.indexOf(2) //3
+			a.indexOf(2, -2); //3
+			a.indexOf(2, -3); //1
 			//判断是否为数组 
-			Array.isArray([])   //true
+			Array.isArray([]) //true
 			//构造器方法判断
-			[]instanceof Array()   //true
-			[].constructor === Array;  //true
-			object.prototype.toString.apply([]) === ['object Array']  //true
-			[{}].toString.apply([]) === ['object Array']  //true
+			[] instanceof Array() //true
+			[].constructor === Array; //true
+			object.prototype.toString.apply([]) === ['object Array'] //true
+			[{}].toString.apply([]) === ['object Array'] //true
 		</script>
 	</body>
+
 </html>
