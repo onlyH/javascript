@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function abc(a, b) {
+				if(typeof a === 'number' && typeof b === 'number') {
+					return a + b;
+				} else {
+					return 0;
+				}
+			}
+			abc(2, 3);
+			//不同调用方式
+			foo() //直接调用
+			new foo() //构造器
+			o.method() //对象方法
+			func.call(o) //call/apply/nind
+
+			//function 构造器
+			Function('var a = "local";console.log(a);')()
+			console.log(typeof a); //local undefined
+
+			var a = 'global';
+			(function() {
+				var b = 'local';
+				Function('console.log(typeof b,typeof a);')()
+			})() //undefined string
+
+			//全局的this
+			console.log(this.document === document); //true
+			console.log(this === window); //true
+
+			this.a = 3;
+			console.log(window.a); //3
+
+			function abc() {
+				return this;
+			}
+			abc() === window //true;
+
+			function abc() {
+				'use strict';
+				return this;
+			}
+			abc() === undefined; //true
+			//作为对象方法的函数的this
+			var a = {
+				b: 123,
+				c: function() {
+					return this.b;
+				}
+			}
+			console.log(a.c()); //123
+
+			var a = {
+				b: 123
+			};
+
+			function c() {
+				return this.b;
+			}
+			a.d = c;
+			console.log(a.d()) //123
+
+			var o = {
+				f: function() {
+					return this.a + this.b
+				}
+			}
+			var d = Object.create(o);
+			d.a = 1;
+			d.b = 2;
+			console.log(d.f()) //3
+
+			//构造器中的this
+			function a() {
+				this.b = 3;
+			}
+			var c = new a();
+			console.log(c.b); //3
+
+			function a() {
+				this.b = 3;
+				return {
+					b: 5
+				}
+			}
+			var c = new a();
+			console.log(c.b); //5
+
+			//call,apply
+			function abc(c, d) {
+				return this.a + this.b + c + d;
+			}
+			var o = {
+				a: 1,
+				b: 2
+			}
+			abc.call(o, 12, 13); //28
+			abc.apply(o, [3, 4]); //10
+
+			function a() {
+				console.log(Object.prototype.toString.call(this))
+			}
+			a.call(7) //[object Number]
+			//bind
+
+			function a() {
+				return this.b;
+			}
+			var c = a.bind({
+				b: 'hello'
+			});
+			console.log(c()); //hello
+			var d = {
+				b: 23,
+				a: a,
+				c: c
+			};
+			console.log(d.a(), d.c()); //23.hello
+			//argument
+			function abc(x, y, z) {
+				arguments.length; //2
+				arguments[0]; //1
+				arguments[0] = 10;
+				x; //10
+				arguments[2] = 100;
+				arguments.callee === abc; //true
+
+			}
+			abc(1, 2);
+			abc.length; //3
+			abc.name; //abc
+
+			//call/apply
+			function abc(a, b) {
+				console.log(a, b, this)
+			}
+			abc.call(100, 1, 2); //1，2，Number(100)
+			abc.apply(true, [3, 4]); //3,4,Boolean(true);
+			abc.apply(null); //undefined,undefined,window
+			abc.apply(undefined); //undefined,undefined.window
+			//严格模式下
+			function abc(a, b) {
+				'use strict';
+				console.log(a, b, this);
+			}
+			abc.apply(null); //undefined,undefined,null
+			abc.apply(undefined); //undefined,undefined,undefined
+			//bind
+
+			this.x = 9;
+			var abc = {
+				x: 23,
+				f: function() {
+					return this.x;
+				}
+			}
+			abc.f(); //23
+
+			var f = abc.f;
+			f(); //9
+
+			var cdf = f.bind(abc);
+			cdf(); //23
+
+			function abc(a, b, c) {
+				return a + b + c;
+			}
+			var d = abc.bind(undefined, 100);
+			d(1, 2); //103
+			var c = d.bind(undefined, 200);
+			c(10); //310
+
+			function abc() {
+				this.b = 3;
+				return this.a;
+			}
+			var func = abc.bind({
+				a: 1
+			});
+			func(); //1
+			new func(); //{b:3}
+
+			// 随机排列
+			var a = [1, 2, 3, 4, 5, 6]
+			a.sort(function() {
+				return Math.random() - 0.5
+			})
+			a;
+			//继承
+			function a() {
+				this.name = 'lee';
+			}
+
+			function b() {
+				this.age = 12;
+			}
+			b.prototype = new a(); //继承
+			var d = new b();
+			console.log(d.age);
+			console.log(d.name); //继承
+
+			//创建对象的几种方式
+			//1，对象字面量的方式
+			person = {
+				name: 'lee',
+				age: 20,
+				color: 'red'
+			}
+			//2,function模拟无参的构造函数
+			function Person() {}
+			var person = new Person; //new实例化
+			person.name = 'lee';
+			person.age = 20;
+			person.work = function() {
+				alert(person.name + "," + person.age)
+			}
+			person.work();
+			//3,function来模拟参构造函数来实现（this关键字定义构造的上下文属性）
+			function pet(name, age, hobby) {
+				this.name = name; //this作用域：当前参数
+				this.age = age;
+				this.hobby = hobby;
+				this.eat = function() {
+					alert('i am' + this.name + ",i like" + this.hobby)
+				}
+			}
+			var maidou = new pet('maidou', 25, 'coding') //实例化，创建对象
+			maidou.eat();
+
+			//4,工厂方式来创建（内置对象）
+			var dog = new Object();
+			dog.name = 'wangcai';
+			dog.age = 1;
+			dog.work = function() {
+				alert('i am' + dog.name + ",lalala")
+			}
+			dog.work();
+			//5,原型方式创建
+			function dog() {}
+			dog.prototype.name = 'wangcai';
+			dog.prototype.eat = function() {
+				alert(this.name + "lalala");
+			}
+			var wangcai = new dog();
+			wangcai.eat();
+			//6,混合方式来创建
+			function car(name, price) {
+				this.name = name;
+				this.price = price;
+			}
+			car.prototype.sell = function() {
+				alert('i am' + this.name + "i like" + this.price);
+			}
+			var camry = new car('lee', 23);
+			camry.sell();
+
+			//模块化开发：立即执行函数，不暴漏私有成员
+			var modul = (function() {
+				var count = 0;
+				var m = function() {
+
+				}
+				var b = function() {
+
+				}
+				return {
+					m: m,
+					b: b
+				}
+			})()
+		</script>
+	</body>
+
+</html>
