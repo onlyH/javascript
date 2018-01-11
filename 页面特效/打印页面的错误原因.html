@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function getError() {
+            try {
+                x = new test;  //产生错误
+            }
+            catch (e) {
+                document.write(e.description) //打印错误结果
+            }
+        }
+    </script>
+</head>
+<body onload="getError()">
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form name="myform">
+    <br>
+    <select name="mailbox" size="1">
+        <option selected>选项</option>
+        <option value="http://www.163.net">163电子邮箱</option>
+        <option value="http://www.263.net">263电子邮箱</option>
+    </select>
+    <br>
+    <a href="javascript:goto()" onmouseover="self.status='';return true" onmouseout="self.status='';return true">
+        <img src="1.png" border="0" align="middle" style="width: 73px;height: 40px">
+    </a>
+</form>
+<script>
+    function goto() {
+        var myindex = document.myform.mailbox.selectedIndex
+        location = document.myform.mailbox.options[myindex].value;
+
+    }
+</script>
+</body>
+</html>
+
+<!--通过下拉列表的selectedIndex属性，获取用户的选择，然后指定导航地址location，主要图片放在一个a标签内，实现图片按钮的效果和功能，单机图片时，会实现页面的导航-->

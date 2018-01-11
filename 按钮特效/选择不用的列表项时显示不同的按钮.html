@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function butselect() {
+            var selval = document.getElementById('sel').value;
+            var tdd = document.getElementById('td');
+            if (selval == '1') {
+                tdd.innerHTML = '<input type = "button" value="按钮111"onclick="btnc1()">'
+            } else if (selval == '2') {
+                tdd.innerHTML = '<input type = "button" value="按钮222"onclick="btnc2()">'
+            } else {
+                tdd.innerHTML = '';
+            }
+        }
+        function btnc1() {
+            alert('点击了按钮1')
+        }
+        function btnc2() {
+            alert('点击了按钮2')
+        }
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <td><select onchange="butselect();" id="sel">
+            <option value=""></option>
+            <option value="1">but1</option>
+            <option value="2">but2</option>
+        </select></td>
+        <td id="td"></td>
+    </tr>
+</table>
+
+</body>
+</html>
+<!--重点是如何将动态创建的按钮天机到指定的位置，以及如何为动态按钮绑定单击事件-->

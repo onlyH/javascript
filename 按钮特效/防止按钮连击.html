@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function doubles() {
+            if (window.document.readyState != null && window.document.readyState != 'complete') {
+                alert('正在处理');
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="text" value="this is test">
+<input type="button" value="save" onclick="doubles()">
+</body>
+</html>
+
+<!--当页面提交的数据特别多的时候，页面会反应迟钝，为防止用户连续单击按钮导致数据重复提交，readyState获取页面的状态，其值只能获取，不能赋予，complete表示加载完毕-->

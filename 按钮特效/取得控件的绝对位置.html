@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function getaddress(s) {
+            var a = s.offsetTop;
+            var b = s.offsetLeft;
+            while (s = s.offsetParent) {
+                a += s.offsetTop;
+                b += s.offsetLeft;
+            }
+            alert("x坐标=" + a + "y坐标=" + b);
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="坐标" onclick="getaddress(this)">
+</body>
+</html>
+
+<!--传递当前控件使用this，获取绝对x使用offsetTop，y使用offestLeft-->

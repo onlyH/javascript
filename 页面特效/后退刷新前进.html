@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="back" onclick="back()">
+<input type="button" value="refresh" onclick="refresh()">
+<input type="button" value="forword" onclick="forword()">
+
+<script>
+    function back(){
+        history.go(-1)  //back
+    }
+    function forword(){
+        history.go(+1)  //forword
+    }
+    function refresh(){
+        history.go(-0);  //refresh
+    }
+</script>
+
+</body>
+</html>

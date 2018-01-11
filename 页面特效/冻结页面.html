@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function freeze(){
+        alert('死机啦');
+        while (true){
+            window.history.back(-1)
+        }
+    }
+
+</script>
+<input type="button" value="freeze" onclick="freeze()">
+</body>
+</html>

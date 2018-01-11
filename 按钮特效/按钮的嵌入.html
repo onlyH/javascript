@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .over {
+            color: yellow;
+            background: navy;
+        }
+
+        .down {
+            color: yellow;
+            background: navy;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<input type="button"
+       onmouseover="this.className = 'over" ;
+       onmouseout="this.className = '';"
+       onmousedown="this.className = 'down';"
+       onmouseup="this.className = 'over' "
+       value="按钮的嵌入"
+       onclick="this.value = '嵌入成功'" name="button"
+>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getargs(parms, parmName) {
+//        获取？所在的位置
+        var argIndex = parms.indexOf('?')
+//        获取？后面的字符串
+        var arg = parms.substring(argIndex + 1);
+        var valarg = '';
+//        使用split将参数分解为数组
+        args = arg.split('&');
+        for (var i = 0; i < args.length; i++) {
+            str = args[i];
+            var arg = str.split('=');
+//            没有参数的时候
+            if (arg[0].length <= 1) continue;
+            if (arg[0] == parmName) valarg = arg[1]
+//            获取指定参数的值
+        }
+        return valarg;
+    }
+    function pageparm() {
+        var myname = getargs(window.location.href, 'name');
+        document.write('您请求的参数值为：' + myname);
+    }
+</script>
+</body>
+</html>
+
+
+<!--浏览器在参数传递的格式：从一个页面传递参数到另一个页面的格式为'页面地址？参数1名=参数值&参数2名=参数值'-->
+<!--'？'表示后面紧跟的字符串是参数，'&'用来连接两个参数，获取页面地址后使用'stsring'对象的一些方法分解字符串，实现参数的提取-->

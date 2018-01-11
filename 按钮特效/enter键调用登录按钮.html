@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function keyload(){
+            if(event.keyCode == 13){
+                document.getElementById('input1').click()
+            }
+        }
+    </script>
+</head>
+<body onkeydown="keyload()">
+<input type="button" id="input1" value="loading" onclick="alert('success')">
+</body>
+</html>

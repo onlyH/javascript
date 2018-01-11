@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    if (self != top) {
+        判断是否为顶层，不是则将当前页面设为顶层
+        top.location = self.location;
+    }
+</script>
+</body>
+</html>
+
+<!--因为在网页中，可以被框架加载的页面不能位于top层，设置top.location将其设置为顶层，可使其不会被加载-->

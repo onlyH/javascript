@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var x = 9;
+    var change = 'on';
+    //    浏览器是Netscape的情况
+    if (navigator.appName == 'Netsvape') {
+//        显示的命令
+        visshow = "'show'";
+//        隐藏命令
+        vishide = "'hide'";
+        docstyle = "document.";
+        styledoc = "";
+    } else {
+//        浏览器是IE的情况
+        vishide = "'hidden'";
+//        显示命令
+        visshow = "'visible'";
+//        隐藏命令
+        docstyle = "";
+//        设置样式的命令
+        styledoc = ".style"
+    }
+    function hide1() {
+        eval(docstyle + 'object1' + styledoc + '.visibility=' + vishide)
+    }//隐藏第一个div
+    function hide2() {
+        eval(docstyle + 'object2' + styledoc + '.visibility=' + vishide)
+    }//隐藏第二个div
+    function hide3() {
+        eval(docstyle + 'object3' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第三个div
+    function hide4() {
+        eval(docstyle + 'object4' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第四个div
+    function hide5() {
+        eval(docstyle + 'object5' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第五个div
+    function hide6() {
+        eval(docstyle + 'object6' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第六个div
+    function hide7() {
+        eval(docstyle + 'object7' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第七个div
+    function hide8() {
+        eval(docstyle + 'object8' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第八个div
+    function hide9() {
+        eval(docstyle + 'object9' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第九个div
+    function hide10() {
+        eval(docstyle + 'object10' + styledoc + '.visibility=' + vishide)
+
+    }//隐藏第十个div
+    function show1() {
+        eval(docstyle + 'object1' + styledoc + '.visibility=' + visshow);
+        hide2(), hide3();
+
+    }//显示第一个div
+    function show2() {
+        eval(docstyle + 'object2' + styledoc + '.visibility=' + visshow);
+        hide1(), hide3();
+
+    }//显示第二个div
+    function show3() {
+        eval(docstyle + 'object3' + styledoc + '.visibility=' + visshow);
+        hide2(), hide4();
+
+    }//显示第三个div
+    function show4() {
+        eval(docstyle + 'object4' + styledoc + '.visibility=' + visshow);
+        hide3(), hide5();
+
+    }//显示第四个div
+    function show5() {
+        eval(docstyle + 'object5' + styledoc + '.visibility=' + visshow);
+        hide4(), hide6();
+
+    }//显示第五个div
+    function show6() {
+        eval(docstyle + 'object6' + styledoc + '.visibility=' + visshow);
+        hide5(), hide7();
+
+    }//显示第六个div
+    function show7() {
+        eval(docstyle + 'object7' + styledoc + '.visibility=' + visshow);
+        hide6(), hide8();
+
+    }//显示第七个div
+    function show8() {
+        eval(docstyle + 'object8' + styledoc + '.visibility=' + visshow);
+        hide7(), hide9();
+
+    }//显示第八个div
+    function show9() {
+        eval(docstyle + 'object9' + styledoc + '.visibility=' + visshow);
+        hide8(), hide10();
+
+    }//显示第九个div
+    function show10() {
+        eval(docstyle + 'object10' + styledoc + '.visibility=' + visshow);
+        hide9();
+
+    }//显示第十个div
+    function change1() {
+        x += 1;
+//        逐个显示div，从1-10
+        eval('show' + x + '()');
+//        一直在此方法中循环
+        if (x < 10) setTimeout('change1()', 75);
+//        开始调用第二个循环方法
+        else if (change == 'on')change2();
+    }
+    function change2() {
+//        逐个显示div，从10-1
+        x -= 1;
+        eval('show' + x + '()');
+        if (x > 1) setTimeout('change2()', 75);
+//        开始调用第一个循环方法
+        else change1();
+    }
+    //    开始第一个变化的控制
+    function changeon() {
+        x = 9;
+        change = 'on';
+        change1();
+    }
+    //    结束变化的控制
+    function changeoff() {
+        change = 'off';
+    }
+</script>
+</body>
+</html>

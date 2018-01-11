@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" http-equiv="refresh" content="11" ;url="http://www.baidu.com">
+    <title>Title</title>
+    <script>
+        //        获取当前时间
+        starDay = new Date();
+        clockstart = starDay.getTime();
+        function init() {
+            var mytime = new Date();
+            var timenow = mytime.getTime();
+            var timeoff = timenow - clockstart;//获取间隔时间
+            this.diffsecs = timeoff / 1000;
+            /*因为时间是以毫秒为单位*/
+            return (this.diffsecs);
+            /*返回间隔秒数*/
+        }
+        function getseces() {
+            var mysecs = init();
+            var mysecsl = "" + mysecs;
+            mysecsl = 10 - eval(mysecsl.substring(0, mysecsl.indexOf("."))) + '秒';
+            document.form1.timespent.value = mysecsl;
+            window.setTimeout('getseces()', 1000)
+        }
+    </script>
+</head>
+<body bgcolor="#ffffff" onload="window.setTimeout('getseces()',1)">
+<p>
+    10秒倒计时加载页面：
+<form name='form1'>
+    <input name="timespent" size="9">
+</form>
+</p>
+
+</body>
+</html>

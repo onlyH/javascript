@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a = [];
+    a[0] = '第一个';
+    a[1] = '第二个';
+    a[2] = '第三个';
+    a[3] = '第四个';
+    a[4] = '第五个';
+    a[5] = '第六个';
+    var index = Math.floor(Math.random() * a.length);//获取一个随机整数
+    window.onload = function cha() {//注意写在onload里
+        var cur = a[index];//获取数组中的指定项
+        window.document.title += "-" + cur;//更改当前标题
+    }
+</script>
+</body>
+</html>

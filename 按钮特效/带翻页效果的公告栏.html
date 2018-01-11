@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #divmag {
+            line-height: 20px;
+            height: 20px;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        var scroll = new function () {
+//            延迟时间
+            this.delay = 2000;
+//            行的高度-----根据高度去判断，超过则调用定时器
+            this.height = 20;
+//            步长
+            this.step = 4;
+            this.curheight = 0;
+            this.stimer = null;
+            this.timer = null;
+//            开始翻页
+            this.start = function () {
+                this.move();
+            }
+
+            this.move = function () {
+                var self = this;
+//                如果显示完这一行
+                if (this.curheight == this.height) {
+//                    使用定时器，定时下一行的翻页时间
+                    this.timer = setTimeout(function () {
+                        self.move();
+                    }, this.delay);
+                    this.curheight = 0;
+                    if (this.element.scrollTop >= this.element.scrollHeight - this.height) {
+//                        滚动信息已经完毕
+                        this.element.scrollTop = 0;
+                    }
+                    return true;
+                }
+                this.element.scrollTop += this.step;
+                this.curheight += this.step;
+                this.timer = setTimeout(function () {
+//                    设置自动翻页定时器
+                    self.move();
+                }, 30);
+            }
+            this.stop = function () {
+//                清楚定时器，停止滚动翻页
+                clearTimeout(this.timer);
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="divmag">
+    浮生若梦,何妨就当它是梦,尽兴地梦它一场?，世事如云,何妨就当它是云,从容地观它千变?
+    <br>
+    在最深重的苦难中，没有呻吟，没有哭泣。沉默是绝望者最后的尊严。
+    <br>
+    在最可怕的屈辱中，没有诅咒，没有叹息。沉默是复仇者最高的轻蔑。
+    <br>
+    相思是篇冗长的腹稿，可发表出来却往往很短。
+    <br>
+    人都是崇高一瞬间，平庸一辈子。
+    <br>
+    一切终将黯淡，惟有被爱的目光镀过金的日子在岁月的深谷里永远闪着光芒
+    <br>
+
+</div>
+<input type="button" value="start" onclick="scroll.start()">
+<input type="button" value="stop" onclick="scroll.stop()">
+<script>
+    scroll.element = document.getElementById('divmag');
+    scroll.start();
+</script>
+</body>
+</html>

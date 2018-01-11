@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var i = 0;
+        function addinput() {
+            var o = document.createElement('input');
+            o.type = 'button';
+            o.value = 'button' + i++;//设置元素的值
+            o.attachEvent('onclick', addinput);//为空间添加事件
+            document.body.appendChild(o);//添加事件到窗体中
+            o = null;//释放对象
+        }
+    </script>
+</head>
+<body onload="addinput()">
+
+</body>
+</html>
