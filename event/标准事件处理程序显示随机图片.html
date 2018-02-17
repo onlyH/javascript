@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="" id="img0">
+<img src="" id="img1">
+<script>
+//    可以为一个元素的一个世家注册多个事件监听器
+    var myImages = [
+            'usa.gif',
+            'banan.gif',
+            'china.gif'
+    ];
+    function changeImg(e) {
+        var el = e.target;
+        var newImgNumber = Math.round(Math.random() *3);
+        while(el.src.indexOf(myImages[newImgNumber]) != -1){
+            newImgNumber = Math.round(Math.random() *3);
+        }
+        el.src = myImages[newImgNumber];
+    }
+    document.getElementById('img0').addEventListener('click',changeImg);
+    document.getElementById('img1').addEventListener('click',changeImg);
+//    removeEventListener()注销事件监听
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>Local Time is<span id="spanLocalTime"></span></div>
+<div id="divCityTime"></div>
+<form name="form1">
+    <select name="lstCity">
+        <option value="60" selected="selected">Berlin</option>
+        <option value="330">Bombay</option>
+        <option value="0">Landon</option>
+        <option value="180">Moscow</option>
+        <option value="-300">New York</option>
+        <option value="60">Paris</option>
+        <option value="-480">San Francisco</option>
+        <option value="600">Sydney</option>
+    </select>
+    <p>
+    <!--复选框会给城市的计算时间增加一个小时-->
+        <input type="checkbox" id="chkDst" name="chkDst">
+        <label for="chkDst">Adjust city time for Daylight Savings</label>
+    </p>
+</form>
+<script>
+    var myForm = document.form1;
+
+    function updateTimeZone() {
+        var lstCity = myForm.lstCity;//对select元素的引用
+        var selectedOption = lstCity.options[lstCity.selectedIndex];
+//使用lstCity对象的options属性及其selectedIndex属性，来检索selectedOption变量
+        var offset = selectedOption.value;
+        var selectedCity = selectedOption.text;
+
+//        是否要选中：夏时制，复选框
+        var dstAdjust = 0;
+        if (myForm.chkDst.checked) {
+            dstAdjust = 60;//60min
+        }
+        updateOutput(selectedCity, offset, dstAdjust);
+    }
+    function updateOutput(selectedCity, offset, dstAdjust) {
+        var now = new Date();
+//        输入当地时间
+        document.getElementById("spanLocalTime").innerHTML = now.toLocaleString();
+        now.setMinutes(now.getMinutes() + now.getTimezoneOffset() + parseInt(offset, 10) + dstAdjust);
+        var resultText = selectedCity + "time is" + now.toLocaleString();
+        document.getElementById("divCityTime").innerHTML = resultText;
+    }
+//    toLocaleString()把日期和时间格式化为本地格式
+    myForm.lstCity.addEventListener("change", updateTimeZone);
+    myForm.chkDst.addEventListener("click", updateTimeZone);
+    updateTimeZone();
+</script>
+</body>
+</html>

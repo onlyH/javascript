@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .underline{
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<p>this is paragraph 1.</p>
+<p>this is paragraph 2.</p>
+<p>this is paragraph 3.</p>
+<script>
+    /*
+    * click
+    * mousedown
+    * mouseup
+    * mouseover
+    * mousemove
+    * mouseout
+    * */
+    /*
+    * Event对象的属性
+    * bubbles
+    * cancelable
+    * defaultPrevented
+    * eventPhase
+    * target引发事件的元素，事件目标
+    * timestamp
+    * type表示事件的名称
+    * */
+    /*
+    * MouseEvent对象的属性
+    * altKey
+    * button
+    * clientX鼠标指针在浏览器窗口中的水平坐标
+    * clientY垂直坐标
+    * ctrlKey
+    * metaKey
+    * relatedTarget
+    * screenX
+    * screenY
+    * shiftKey
+    * */
+
+    /*
+    * KeyborderEvent对象的属性
+    * altKey
+    * charCode
+    * ctrlKey
+    * keyCode
+    * meatKey
+    * shiftKey
+    * */
+
+    function handleEvent(e) {
+        var target = e.target;
+        var type = e.type;
+        if (target.tagName == 'p') {
+            if(type == 'mouseover') {
+                target.className = 'underline';
+            }else if(type == 'mouseout'){
+                target.className = ''
+            }
+        }
+        if (type == 'click') {
+            alert('you clicked the mouse button at the X:'+ e.clientX+'and Y:'+ e.clientY)
+        }
+    }
+    document.addEventListener('mouseover',handleEvent);
+    document.addEventListener('mouseout',handleEvent);
+    document.addEventListener('click',handleEvent);
+</script>
+</body>
+</html>

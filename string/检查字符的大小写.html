@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--从字符串中提取一个子串，并赋予另一个变量-->
+<script>
+    //substr(字符的起始位置，长字符串中提取的子串的长度);
+    //substring，substr(子串包含从开始位置到字符串末尾的所有字符);
+    //substring(子串的开始位置，最后一个字符后面的字符的位置);
+
+    var a = 'javascript';
+    var b = a.substring(0, 4);
+    alert(b);//java
+
+
+    //赋予当前的文件路径和文件名
+    var fileName = window.location.href;
+    //    fileName.lastIndexOf('/')查找最后一个斜杠出现的位置，+1是不需要包含斜杠字符
+    fileName = fileName.substr(fileName.lastIndexOf('/') + 1);
+    console.log('the file name of this page is ' + fileName);
+
+
+    var myString = "I don't care about case";
+    if (myString.toLowerCase() !== "I don't care about case") {
+        console.log('translate');
+    }
+
+    //    charAt()charCodeAt() --从字符串中选取一个字符
+    //    charCodeAt()返回十进制编码
+    //    charAt(所选参数在字符串中的索引位置，返回该字符，字符串中字符的位置从0开始，第一个字符的索引是0)
+    var myString = prompt('enter some text', 'hello world');
+    //    该字符串的长度为12，但最后一个字符的索引为11，需要吧字符串的长度-1，得到最后一个索引
+    var theLastChar = myString.charAt(myString.length - 1);
+    console.log('the last charcter is' + '/' + theLastChar);//d
+
+    //    要确定一个字符编码
+    var myString = prompt('enter some text', 'ahello world');
+    var theFirstCharCode = myString.charCodeAt(0);
+    console.log(theFirstCharCode);
+
+
+    //检查字符的大小写,数字还是其他字符
+    function checkCharType(charToCheck) {
+        var returnValue = '0';
+        var charCode = charToCheck.charCodeAt(0);
+//        if(char >= "A" && char <= "z")
+        if (charCode >= 'A'.charCodeAt(0) && charCode <= 'Z'.charCodeAt(0)) {
+            returnValue = 'U'
+        } else if (charCode >= 'a'.charCodeAt(0) && charCode <= 'z'.charCodeAt(0)) {
+            returnValue = 'L';
+        } else if (charCode >= '0'.charCodeAt(0) && charCode <= '9'.charCodeAt(0)) {
+
+            returnValue = 'N';
+        }
+        return returnValue;
+    }
+    var myString = prompt('enter the text:', 'hello world');
+    switch (checkCharType(myString)) {
+        case 'U':
+            console.log('First character was upper case');
+            break;
+        case 'L':
+            console.log('First character was lower case');
+            break;
+        case 'N':
+            console.log('first character was a number');
+            break;
+        default:
+            console.log('First character was a character or a number');
+    }
+
+
+//    fromCharCode与charCodeAt相反，给他传送一系列用逗号分隔的，表示字符编码的数字，该方法就会把他们转换为一个字符串
+
+    var a = String.fromCharCode(65,66,67);//"ABC"
+
+    var myString = '';
+    for(var i = 65; i<91;i++) {
+        myString =  myString + String.fromCharCode(i);
+    }
+    console.log(myString);//ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+//    trim()--去掉字符串的两端的空格
+    var name = prompt('enter your name');
+    name = name.trim();
+    console.log('hello,' + name);
+
+</script>
+</body>
+</html>

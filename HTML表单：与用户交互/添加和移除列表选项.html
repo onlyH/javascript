@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" name="theForm">
+    <select name="theDay" size="5">
+        <option value="0" selected="selected">Monday</option>
+        <option value="1">tuesday</option>
+        <option value="2">wednesday</option>
+        <option value="3">thursday</option>
+        <option value="4">friday</option>
+        <option value="5">saturday</option>
+        <option value="6">sunday</option>
+    </select>
+    <br>
+    <input type="button" value="remove wednesday" name="btnRemoveWed">
+    <input type="button" value="add wednesday" name="btnAddWed">
+    <br>
+</form>
+<script>
+    var theForm = document.theForm;
+
+    function btnRemoveWedClick() {
+        var options = theForm.theDay.options;//包含option元素集合
+
+        if (options[2].text == "wednesday") {//options[2].value == "wednesday")
+            options[2] = null;//移除
+        } else {
+            alert("there is no wednesday here")//没有要移除的Wednesday
+        }
+    }
+
+    function btnAddWedClick() {
+        var options = theForm.theDay.options;
+
+        if (options[2].text != "wednesday") {
+            var lastOption = new Option();
+            options[options.length] = lastOption;
+
+            for (var index = options.length - 1; index > 2; index--) {
+                var currentOption = options[index];
+                var previousOption = options[index - 1];
+
+                currentOption.text = previousOption.text;
+                currentOption.value = previousOption.value;
+            }
+            var option = new Option("wednesday", 2);
+            options[2] = option;
+        } else {
+            alert("do you want to have TWO wednesday?");
+        }
+    }
+    theForm.btnRemoveWed.addEventListener("click", btnRemoveWedClick);
+    theForm.btnAddWed.addEventListener("click", btnAddWedClick);
+</script>
+</body>
+</html>

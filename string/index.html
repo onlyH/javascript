@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    split(),match(),replace(),search()都可以使用正则表达式。正则允许定义字符模式，
+    //    用于查找或替换文本
+    var a = 'a,b,c';
+    var b = a.split('');//(5) ["a", ",", "b", ",", "c"]
+    var c = a.split(',')//(3) ["a", "b", "c"]
+    var d = a.split('/')//["a,b,c"]
+
+    //    反转文本顺序
+    var values = prompt('please enter a set of comma separated values.', 'apples,oranges,bananas');
+    function splitAndReverse(csv) {
+        var parts = csv.split(',');
+        parts.reverse();
+
+        var reversedString = parts.join(',');
+        parts.reverse();
+        alert(reversedString);
+    }
+    splitAndReverse(values)
+
+    //    replace()在字符串中搜索子串，当找到匹配的子串时，就将把匹配的子串替换到指定的第三个子串
+    var a = 'the event will be in may,the 21st of june';
+    var b = a.replace('may', 'june');//"the event will be in june,the 21st of june"
+
+    //search()在字符串中查找特定的文本段，如果找到文本，则返回子串在字符串中的位置，否则返回-1
+    var a = 'beginning javascript,beginning java,' + 'professional javascript';
+    alert(a.search('java'));//10
+    //match()与search相似，但是返回的是一个数组，该数组的每个元素都包含一个找到的匹配子串
+    var a = '1997,1998,1999,2000,2000,2001,2002';
+    var b = a.match('2000');
+    alert(b.length);
+
+//    正则表达式是一种定义字符模式的方法，可以拆分，查找或替换字符串中与模式字符匹配的字符
+
+
+
+
+</script>
+</body>
+</html>

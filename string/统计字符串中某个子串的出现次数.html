@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    indexOf
+    var myString = 'Welcome to Wrox books. ' +
+            'The Wrox website is www.worx.com' +
+            'Visit the Wrox website today.Thanks for buying Wrox';
+    var foundAtPosition = 0;//在字符串中出现的次数
+    var wroxCount = 0;//在字符串中找到Wrox的当前位置
+
+    while (foundAtPosition != -1) {
+        //只要在字符串中找到Wrox，即不等于-1
+        foundAtPosition = myString.indexOf('Wrox', foundAtPosition);
+        //foundAtPosition保存了上一次找到子串的索引位置
+
+        if (foundAtPosition != -1) {
+            wroxCount++;
+            foundAtPosition++;
+            可以在字符串的下一个位置处继续查找
+        }
+    }
+    console.log('there are' + wroxCount + "occurrence of the word Wrox")；
+</script>
+</body>
+</html>

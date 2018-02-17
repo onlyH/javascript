@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var names = {};//代替了调用object构造函数
+    //创建对象后，就可以开始给对象添加一些属性，类似于变量的创建，只是不在使用var，
+    //仅使用对象的名称，后跟一个句点以及属性的名称，之后再给对象赋予值。
+    names.firstName = 'lee';
+    names.lastName = 'dee';
+
+    //下面的方法赋值，所赋的是一个函数而不是其他类型的值
+    //    创建了一个greeting的方法，
+    names.greet = function () {
+        alert('my name is' + names.firstName + "" + this.lastName);
+    }
+
+    names.greet();
+
+    //    this是一个指向当前变量的特殊变量。表示这个对象
+    //    在饮用方法内的当前对象时使用this是首选。
+    //    字面量符号法定义这个对象
+    var names = {
+        firstName: 'lee',
+        lastName: 'gee',
+        greeting: function () {
+            alert('my name is' + names.firstName + "" + this.lastName);
+        }
+
+    };
+    //    使用对象字面量
+    function createPerson(firstName, lastName) {//不是构造函数，仅创建并返回一个对象
+        return {
+            firstName: firstName,
+            lastName: lastName,
+//            this是访问这些属性的唯一方式，因为该对象没有名称，是匿名函数，之后会返回给调用程序
+            getFullName: function () {
+                return this.firstName + "" + this.lastName
+            },
+            greet: function (person) {
+                console.log('hello,' + person.getFullName() + "" + '.i am' + this.getFullName())
+            }
+        }
+    }
+
+    var a = createPerson('lee', 'gee');
+    var b = createPerson('john', 'doe');
+    a.greet(b);//hello,johndoe.i amleegee
+
+    //    引用类型
+    function Person(firstName, lastName) {//大写
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    Person.prototype.getFullName = function () {
+        return this.firstName + "" + this.lastName
+    }
+    Person.prototype.greet = function () {
+        console.log('hello,' + person.getFullName() + "" + '.i am' + this.getFullName())
+    }
+    //    每个函数对象都包含protitype属性，但是该属性仅对构造函数有用，
+    //    可以将Person.prototype属性看成Person对象的实际原型，赋给Person.prototype的
+    //    任何属性和方法对于Person对象都可用
+
+    //    创建和使用引用类型的实例
+    //    与创建js内置类型的实例一样，使用new
+    var lee = new Person('gog', 'lol');//基于Person类型
+
+
+</script>
+</body>
+</html>

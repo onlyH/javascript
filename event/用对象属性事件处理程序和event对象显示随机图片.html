@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="" onclick="changeImg(event)">
+<img src="" onclick="changeImg(event)">
+<script>
+    //    target：事件的目标
+    var myImages = [
+        'user.gif',
+        'canada.gif',
+        'jamaica.gif'
+    ];
+    function changeImg(e) {
+        var el = e.target;
+        var newImageNumber = Math.round(Math.random() * 3);
+        while (el.src.indexOf(myImages[newImageNumber]) != -1) {
+            newImageNumber = Math.round(Math.random() * 3);
+        }
+        el.src = myImages[newImageNumber];
+    }
+</script>
+</body>
+</html>

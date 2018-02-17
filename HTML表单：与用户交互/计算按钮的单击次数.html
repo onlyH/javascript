@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" name="form1">
+    <input type="button" name="myButton" value="Button click 0 times">
+</form>
+<script>
+    var myButton = document.form1.myButton;//input 元素的引用
+    var numberOfClicks = 0;//按钮的单机次数
+    function myButtonClick() {
+        numberOfClicks++;
+        myButton.value = "Button clicked" + numberOfClicks + "times";
+    }
+    myButton.addEventListener("click",myButtonClick);
+</script>
+</body>
+</html>

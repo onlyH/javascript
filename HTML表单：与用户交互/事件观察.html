@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" name="form1">
+    <textarea name="textarea1" cols="30" rows="10"></textarea>
+    <br>
+    <textarea name="textarea2" cols="30" rows="10"></textarea>
+    <br>
+    <input type="button" value="clear event textarea" name="button1">
+</form>
+
+<script>
+    var myForm = document.form1;
+    var textArea1 = myForm.textarea1;
+    var textArea2 = myForm.textarea2;
+    var btnClear = myForm.button1;
+    //把触发的事件名追加到第二个文本区后面
+    function displayEvent(e) {
+        var message = textArea2.value;
+        massage = message + e.type + "\n";
+//        新消息赋予文本区域的value属性
+        textArea2.value = massage;
+    }
+    function clearEventlog(e) { //清空第二个框元素的内容
+        textArea2.value = "";
+    }
+    textArea1.addEventListener("change", displayEvent);
+    textArea1.addEventListener("keydown", displayEvent);
+    textArea1.addEventListener("keyup", displayEvent);
+    textArea1.addEventListener("keypress", displayEvent);
+    btnClear.addEventListener("click", clearEventlog);
+</script>
+</body>
+</html>

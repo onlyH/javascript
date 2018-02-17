@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [data-drop-target] {
+            height: 400px;
+            width: 200px;
+            margin: 2px;
+            background-color: gainsboro;
+            float: left;
+        }
+
+        .drag-enter {
+            border: 2px dashed #000000;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .navy {
+            background-color: navy;
+        }
+
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div data-drop-target="true">
+    <div id="box1" draggable="true" class="box navy"></div>
+    <div id="box2" draggable="true" class="box red"></div>
+</div>
+<div data-drop-target="true"></div>
+<script>
+    function handleDragStart(e) {
+//        data对象
+        var data = {
+            elementId: this.id,//elementId属性包含元素的id值
+            message: "you moved an element" //随机文本
+        };
+        //串行化得到json文本设置为传输的数据
+        e.dataTransfer.setData("text", JSON.stringify(data));
+    }
+
+    function handleDragEnterLeave(e) {
+        if (e.type == "dragenter") {
+            this.className = "drag-enter";
+        } else {
+            this.className = ""
+        }
+    }
+
+    function handleOverDrop(e) {
+        e.preventDefault();
+
+        if (e.type != "drop") {
+            return;
+        }
+//        getData()方法检索传输的数据，存储在json变量中
+        var json = e.dataTransfer.getData("text");
+//        json解析为js
+        var data = JSON.parse(json);
+//        elementId从文档中检索拖动的元素对象
+        var draggedEl = document.getElementById(data.elementId);
+
+
+        if (draggedEl.parentNode == this) {
+            this.className = "";
+            return;
+        }
+
+        draggedEl.parentNode.removeChild(draggedEl);
+
+        this.appendChild(draggedEl);
+        this.className = "";
+//        从父元素中删除拖动的元素并追加到释放元素上后，就访问data对象，显示message
+        alert(data.message);
+    }
+
+    var draggable = document.querySelectorAll("[draggable");
+    var targets = document.querySelectorAll("[data-drop-target]");
+
+    for (var i = 0; i < targets.length; i++) {
+        draggable[i].addEventListener("dragstart", handleDragStart);
+    }
+    for (var i = 0; i < targets.length; i++) {
+        targets[i].addEventListener("dragover", handleOverDrop);
+        targets[i].addEventListener("drop", handleOverDrop);
+        targets[i].addEventListener("dragenter", handleDragEnterLeave);
+        targets[i].addEventListener("dragleave", handleDragEnterLeave);
+    }
+</script>
+</body>
+</html>

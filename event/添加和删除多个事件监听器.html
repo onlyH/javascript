@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="" id="img0">
+<div id="status"></div>
+<script>
+    var myImages = [
+        'usa.gif',
+        'canan.gif',
+        'china.gif'
+    ];
+    function changeImg(e) {
+        var el = e.target;//获取目标函数
+        var newImgNumber = Math.round(Math.random() * 3);
+//        indexOf返回所在位置，-1表示没有找到
+        while (el.src.indexOf(myImages[newImgNumber]) != -1) {
+            newImgNumber = Math.round(Math.random() * 3);
+        }
+        el.src = myImages[newImgNumber];
+    }
+    function updateStatus(e) {
+        var el = e.target;
+        var status = document.getElementById('status');
+        status.innerHTML = 'the image changed to' + el.src;
+        if (el.src.indexOf('mexico') > -1) {
+            el.removeEventListener('click', changeImg);
+            el.removeEventListener('click', updateStatus);
+
+        }
+    }
+    var imgObj = document.getElementById('img0');
+    imgObj.addEventListener('click', changeImg);
+    imgObj.addEventListener('cilck', updateStatus);
+</script>
+</body>
+</html>

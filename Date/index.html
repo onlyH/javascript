@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a = new Date();
+    var b = new Date('31 january 2014');
+    var c = new Date(949278000000);
+    var d = new Date(2014, 0, 31, 15, 35, 20, 20);
+
+    //    获得日期值
+    getDate()//月份中的第几天
+    getDay()//表示星期几
+    getMonth()//表示月份的整数
+    getFullYear() //以四位数表示的年份
+    toDateString()//当时市区，返回字符串
+
+    //使用Date对象获取当前日期
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var dateNow = new Date();
+    var yearNow = dateNow.getFullYear();//当前年
+    var monthNow = months[dateNow.getMonth()];//当前月
+    var dayNow = dateNow.getDate();//星期
+    var daySuffix;
+
+    switch (dateNow) {
+        case 1:
+        case 21:
+        case 31:
+            daySuffix = 'st';
+            break;
+        case 2:
+        case 22:
+            daySuffix = 'nd';
+            break;
+        case 3:
+        case 23:
+            daySuffix = 'rd';
+            break;
+        default:
+            daySuffix = 'th';
+            break;
+    }
+    console.log('it is the ' + dayNow + daySuffix + 'day');
+    console.log('in the month of' + monthNow);
+    console.log('in the year' + yearNow);
+
+
+    //    设置日期
+    setDay()//
+    setMonth()//
+    setFullYear()
+
+    a.setFullYear(2016) //2016
+    a.setDate(27);//27
+    a.setMonth(1)//2
+
+
+    var a = new Date();
+    var b = a.getDay();
+    a.setDate(b + 20);
+
+
+    //    获得时间值
+    getHours();
+    getMinutes();
+    getSeconds();
+    getMilliseconds();
+    getTimeString();
+
+
+    //    在网页上输入当前时间
+
+    var greeting;
+    var nowDate = new Date();
+    var nowHour = nowDate.getHours();
+    var nowMinute = nowDate.getMinutes();
+    var nowSecond = nowDate.getSeconds();
+
+    if (nowMinute < 10) {
+        nowMinute = '0' + nowMinute;
+    }
+    if (nowSecond < 10) {
+        nowSecond = '0' + nowSecond;
+    }
+    if (nowHour < 12) {
+        greeting = 'good morning';
+    } else if (nowHour < 17) {
+        greeting = 'good afternoon';
+    } else {
+        greeting = 'good night'
+    }
+    console.log(nowHour + ':' + nowMinute + ':' + nowSecond)
+
+    //设置时间值
+    setHours();
+    setMinutes();
+    setSeconds();
+    setMilliseconds();
+
+
+    var a = new Date();
+    a.setHours(9);
+    a.setMinutes(57);
+    alert(a);//9:57
+    a.setMinutes(64);
+    alert(a);//10:04
+
+    //Date对象的世界时方法
+    toLocaleString();
+    toTimeString();
+    toLocaleDateString();
+    toDateString();
+
+    var localTime = new Date();
+    var html = "<p>UTC Time is" + localTime.toUTCString() + "</p>";
+    html += 'Local Time is' + localTime.toLocaleString() + "</p>";
+    html += "<p>time xone offset is" + localTime.getTimezoneOffset() + "</p>"
+    html += "<p>using toTimeString() gives :" + localTime.toTimeString() + "</p>"
+    html += "<p>using toLocaleDateString() gives :" + localTime.toLocaleDateString() + "</p>"
+    html += "<p>using toDateString() gives: :" + localTime.toDateString() + "</p>"
+    console.log(html);
+
+
+    /*******************************/
+    //设置和获取Date对象的UTC日期／时间
+    setUTCHours();
+    setUTCMinutes();
+    setUTCSeconds();
+
+
+    var myDate = new Date();
+    myDate.setUTCHours(12);
+    myDate.setUTCMinutes(0);
+    myDate.setUTCSeconds(0);
+
+    var html = "<p>" + myDate.toUTCString() + "</p>";
+    html += "<p>" + myDate.toLocaleString() + "</p>";
+
+    console.log(html);
+
+    //    一次性计时器 setTimeOut(执行的代码，延迟的时间毫秒);返回一个整数，计时器的唯一ID
+    function doThisLater() {
+        alert('time is up');
+    }
+    var timerId = setTimeout(doThisLater, 3000);
+    clearTimeout(timerId);
+    //    清除计时器，chearTimeOut（），接受一个参数，即返回的唯一的计时器ID
+    //    setInterval(),第二个参数为触发的时间间隔
+
+    function unpdataTime() {
+        document.getElementById('output').innerHTML = new Date();
+    }
+    setInterval(unpdataTime, 1000);
+
+
+</script>
+</body>
+</html>

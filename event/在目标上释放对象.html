@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [data-drop-target] {
+            height: 400px;
+            width: 200px;
+            margin: 2px;
+            background-color: gainsboro;
+            float: left;
+        }
+        .drag-enter{
+            border:2px dashed #000;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+        }
+        .navy{
+            background-color: navy;
+        }
+        .red{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div data-drop-target="true">
+    <div id="box1" draggable="true" class="box navy"></div>
+    <div id="box2" draggable="true" class="box red"></div>
+</div>
+<div data-drop-target="true"></div>
+<script>
+    function handleDragStatus(e){
+        e.dataTransfer.setData("text",this.id);//this == e.target
+    }
+    function handleDragEnterLeave(e) {
+        if (e.type == "dragenter") {
+            this.className = "drag-enter";
+        }else{
+            this.className="";
+        }
+    }
+    function handleOverDrop(e) {
+        e.preventDefault();
+        if(e.type !="drop") {
+            return;
+        }
+        var draggedId = e.dataTransfer.getData("text");
+        var draggedEl = document.getElementById(draggedId);
+        if (draggedEl.parentNode == this) {
+            return;
+        }
+        draggedEl.parentNode.removeChild(draggedEl);
+        this.appendChild(draggedEl);
+        this.className="";
+    }
+    var draggable = document.querySelectorAll("[draggable]");
+    var targets = document.querySelectorAll("[data-drop-target");
+
+    for(var i = 0; i<draggable.length;i++) {
+        draggable[i].addEventListener("dragstart",handleDragStatus);
+    }
+    
+    for(var i = 0; i<targets.length;i++){
+        targets[i].addEventListener("dragover",handleOverDrop);
+        targets[i].addEventListener("drop",handleOverDrop);
+        targets[i].addEventListener("dragenter",handleDragEnterLeave);
+        targets[i].addEventListener("dragleave",handleDragEnterLeave)
+    }
+</script>
+</body>
+</html>

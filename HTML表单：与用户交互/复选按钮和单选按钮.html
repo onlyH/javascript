@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" name="form1">
+    <p>
+        tick all of the components you want included on you computer
+    </p>
+    <p>
+        <label for="chkDVD">DVD-ROM</label>
+        <input type="checkbox" id="chkDVD" name="chkDVD" value="DVD-ROM">
+    </p>
+    <p>
+        <label for="chkBluRay">Blu-ray</label>
+        <input type="checkbox" id="chkBluRay" name="chkBluRay" value="Blu-ray">
+    </p>
+    <p>
+        select the processor speed you require
+    </p>
+    <p>
+        <input type="radio" name="radCpuSpeed" checked="checked" value="3.2 ghz">
+        <label for="">3.2 GHz</label>
+        <input type="radio" name="radCpuSpeed" value="3.7 ghz">
+        <label for="">3.7 GHz</label>
+        <input type="radio" name="radCpuSpeed" value="4.0 ghz">
+        <label for="">4.0 GHz</label>
+    </p>
+    <input type="button" value="check form" name="btnCheck">
+</form>
+<script>
+    var myForm = document.form1;//引入表单
+
+    //radCpuSpeed单选按钮组，便利radCpuSpeed单选按钮组中的Radio对象，通用化
+    function getSelectedSpeedValue() {
+        var radios = myForm.radCpuSpeed;
+
+        for (var index = 0; index < radios.length; index++) {
+            if (radios[index].checked) {
+                return radios[index].value;//返回改Radio对象的值
+            }
+        }
+        return "";
+    }
+
+    function findIndexOfSpeed(radio) {
+        var radios = myForm.radCpuSpeed;
+        for (var index = 0; index < radios.length; index++) {
+            if (radios[index] == radio) {
+                return index;
+            }
+        }
+        return -1
+    }
+
+    function radCpuSpeedClick(e) {
+        //radCpuSpeed单选按钮租种找到事件目标的索引，findIndexOfSpeed辅助函数
+        var radIndex = findIndexOfSpeed(e.target);
+        if (radIndex == 1) {//如果单选按钮的索引值是1
+            e.preventDefault();
+            //取消默认事件，取消单击操作，就不选中单选按钮，这种情况下，所有浏览器会再次选中以前选中以前选中的单选按钮
+            alert("sorry");
+            myForm.radCpuSpeed[0].checked = true;
+        }
+    }
+
+    function btnCheckClick() {//检查表单
+        var numberOfControls = myForm.length;//表单的length属性，表单中的个数
+        var compSpec = "you chosen processor speed is ";//建立要在消息框中显示的字符串
+        compSpec = compSpec + getSelectedSpeedValue();//把用户选中的单选按钮值添加到消息字符串中
+        compSpec = compSpec + "\n with the following additional components : \n";
+        //getSelectedSpeedValue()辅助函数，获取所选Radio对象的值
+
+        //遍历表单元素
+        for (var index = 0; index < numberOfControls; index++) {
+//            element设置为对form1集合中索引为controllIndex的对象的引用
+            var element = myForm[index];
+////            看选中了哪些复选框，所以使用每个HTML表单元素对象都有的type属性，来确定当前处理的元素是什么类型
+//            如果type是checkbox，就继续检查它是否被选中
+            if (element.type == "checkbox") {
+//                如果是，就把其值追加到compSpec中的消息字符串末尾
+                if (element.checked) {
+                    compSpec = compSpec + element.value + "\n";
+                }
+            }
+        }
+        alert(compSpec);
+    }
+    for (var index = 0; index < myForm.radCpuSpeed.length; index++) {
+        myForm.radCpuSpeed[index].addEventListener("click", radCpuSpeedClick);
+    }
+    //给表单的标准按钮注册事件监听器
+    myForm.btnCheck.addEventListener("click", btnCheckClick)
+</script>
+</body>
+</html>

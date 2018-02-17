@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    abs（）返回所传入参数的绝对值，
+    var a = -110;
+    console.log(Math.abs(a))//110
+
+    var a = Math.max(21, 22);
+    var b = Math.min(30.1, 30.2);
+
+    //ceil()把数值向上修整到最接近的最小整数
+    //floor（）向下修整
+    //round（）大于等于0.5向上修整，小于等于0.5向下
+    var myNumber = prompt('enter the number to be rounded', '');
+    document.write('<h3>the number you entered was ' + myNumber + '<h3>');
+    document.write("<table width='150' border='1'>");
+    document.write("<tr><th>method</th><th>result</th></tr>");
+    document.write("<tr><td>parseInt()</td><td>" + parseInt(myNumber) + "</td></tr>")
+    document.write("<tr><td>ceil()</td><td>" + Math.ceil(myNumber) + "</td></tr>")
+    document.write("<tr><td>floor()</td><td>" + Math.floor(myNumber) + "</td></tr>")
+    document.write("<tr><td>round()</td><td>" + Math.round(myNumber) + "</td></tr>")
+    document.write("</table>");
+
+    //random()返回一个0-1之间的随机浮点数
+    var result;
+    for (var i = 0; i < 10; i++) {
+        result = (Math.floor(Math.random() * 6) + 1);
+        console.log(result);
+    }
+
+    //pow(底数，指数)，计算一个数的指定幂
+    //编写一个函数，用于固定数字中的小数位数
+
+    function fix(fixNumber, decimalPlaces) {
+        var div = Math.pow(10, decimalPlaces);
+        fixNumber = Math.round(fixNumber * div) / div;
+        return fixNumber;
+    }
+    var number1 = prompt('enter the number with decimal places you' + 'want to fic', '');
+    var number2 = prompt('how many decimal places do you want?', '');
+    document.write(number1 + 'fixed to' + number2 + 'decimal places is:');
+    document.write(fix(number1, number2));
+
+
+</script>
+</body>
+</html>

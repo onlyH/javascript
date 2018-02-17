@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    length
+    var a = [];
+    a[0] = ['aa'];
+    a[1] = ['bb'];
+    a[11] = ['cc'];
+    console.log(a[a.length - 1]);
+    //    push
+    var a = [];
+    a.push('cc');
+    a.push('dd');
+    console.log(a);
+
+    //    concat
+    var a = [1, 2, 3];
+    var b = ['aa', 'bb', 'cc'];
+    var c = a.concat(b);//(6) [1, 2, 3, "aa", "bb", "cc"]
+    var d = b.concat(a);//["aa", "bb", "cc", 1, 2, 3]
+
+    //    slice--复制数组的一部分
+    //    slice(第一个元素的索引，末尾的元素的索引)
+    //    与substring相似，起始元素包含在渎职的部分中，结束元素不在其中，如果没有第二个参数，则复制从起始索引往后的所有元素
+    var a = ['aa', 'bb', 'cc', 'dd', 'ee'];
+    a.slice(0, 3);//(3) ["aa", "bb", "cc"]
+
+    //join--将数组转化为单个字符串
+    将数组中的所有元素连接起来
+    ，
+    返回一个字符串
+    ，
+    一个参数
+    ，
+    元素之间插入的字符串
+    var a = ['aa', 'bb', 'cc', 'dd', 'ee'];
+    var b = a.join('');//"aabbccddee"
+    var c = a.join(',');//"aa,bb,cc,dd,ee"
+    var d = a.join('  ')//"aa  bb  cc  dd  ee"
+    var e = a.join();//"aa,bb,cc,dd,ee"
+
+    //sort
+    var a = ['d', 'v', 'e', 'a'];
+    var d = a.sort();//(4) ["a", "d", "e", "v"]
+
+
+    var a = [2, 4, 1, 5, 3, 77, 32, 54];
+    var b = a.sort(function (a1, a2) {
+        return a1 - a2
+    })//(8) [1, 2, 3, 4, 5, 32, 54, 77]
+
+    var a = [1, 2, 4, 22, 56];
+    var b = a.reverse();//(5) [56, 22, 4, 2, 1]
+
+
+    //    提示用户是按升序还是降序排列数组，输入1升序，输入-1降序，输入其他值，无效
+    var myShopping = ['Eggs', 'Milk', 'Potatoes', 'Cereal', 'Banan'];
+    var ord = prompt('enter 1 for alphabetical order,' + 'and -1 for reverse order', 1);
+    if (ord == 1) {
+        myShopping.sort();
+        console.log(myShopping.join('<br>'));
+    } else if (ord == -1) {
+        myShopping.sort();
+        myShopping.reverse();
+        console.log(myShopping.join('<br>'))
+    } else {
+        console.log('that is not a valid input');
+    }
+    //    indexOf,lastIndexOf返回某元素在数组中的第一个出现位置和最后一个出现位置的索引
+
+    var a = ['aa', 'bb', 'cc', 'dd', 'ee'];
+    var b = a.indexOf('aa');//0
+    var f = a.lastIndexOf('aa');//0
+    var d = a.indexOf('cc');//2
+    var e = a.lastIndexOf('cc');//2
+    var ac = a.indexOf('bb');//1
+    var dd = a.lastIndexOf('bb');//1
+
+    //    迭代数组，但不使用循环
+    //    迭代，会在每一个元素上执行定义的函数，这些方法使用的函数必须遵循：函数必须接受三个参数
+    //    （元素的值，元素的索引，数组本身）
+    //    every和some是测试方法，
+    var a = [1, 2, 3, 4, 5];
+    function abc(value, index, array) {
+        if (value < 3) {
+            return true;
+        }
+        return false;
+    }
+    alert(a.every(abc));
+
+    //    fliter对数组的每个元素执行某函数，如果该函数对某个元素返回true，就把该元素添加到filter方法返回给另一个数组中
+    var a = [1, 2, 3, 4, 5, 6];
+    function abc(value, index, array) {
+        if (value < 3) {
+            return true;
+        } else {
+            return false
+        }
+    }
+    if (a.some(abc)) {
+        var result = a.filter(abc);
+        alert(result);
+    }
+
+    //    forEach,map不用函数测试数组中的每个元素，以某种方式使用数组中的元素执行某类操作
+    var a = [1, 2, 3, 4, 5];
+    for (i = 0; i < a.length; i++) {
+        var sum = a[i] * 2;
+        console.log(sum);
+    }
+
+
+    var a = [1, 2, 3, 4, 5];
+    function abc(value, index, array) {
+        var result = value * 2;
+        console.log(result);
+    }
+    a.forEach(abc);
+
+    //    map和forEach类似，但是返回一个包含函数执行结果的新数组
+
+
+    var a = [1, 2, 3, 4, 5];
+    var result;
+    function abc(value, index, array) {
+        result = value * 2;
+        alert(result)
+    }
+    a.map(abc);
+
+
+</script>
+</body>
+</html>

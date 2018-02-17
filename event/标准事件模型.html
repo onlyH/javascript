@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="xxx.html" id="someLink">click me</a>
+<script>
+    //DOM定义了一个对象EventTarget，定义一种标准的方式，为目标上的事件添加和删除监听器
+    //DOM的每个元素节点都是一个EventTarget，可以动态的为给定元素添加和删除事件监听器
+    //DOM描述了一个Event对象，提供了触发事件的元素信息，允许在脚本中获取该元素
+    //规则：以标准的方式确定和中元素发生事件，生成何种类型的事件，何时何地的触发事件
+    //如果在脚本中使用Event对象，必须将它作为参数，传入与事件处理程序相关的函数
+    //EventTarget的两个方法：
+    //(addEventListener()在所调用的目标上注册一个事件监听器，在目标／元素对象调用他
+    var link = document.getElementById('someLink');
+    //    link.addEventListener('click', function (e) {
+    //        alert('this link is going nowhere');
+    //        e.preventDefault()
+    //    })
+
+    function linkClick(e) {
+        alert('this link is going nowhere')
+        e.preventDefault()
+    }
+    link.addEventListener('click', linkClick);
+
+
+</script>
+</body>
+</html>

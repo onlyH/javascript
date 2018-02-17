@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="" onclick="changeImg(this)">
+<img src="" onclick="changeImg(this)">
+<script>
+    //    图片源列表数组
+    var myImages = {
+        'usa.gif',
+        'canada.gif',
+        'jamaica.gif'
+    }
+    function changeImg(that) {
+        var newImgNumber = Math.round(Math.random() * 3);
+//        while循环为确保不会选择当前的图片
+//        如果myImages[newImgNumber]包含的字符串是当前图片的src属性，则表示选中的图片与当前图片相同，
+//        需要获取另一个随机数，直到选出一副新图片为止
+        while (that.src.indexOf(myImages[newImgNumber]) != -1) {
+            newImgNumber = Math.round(Math.random() * 3);
+        }
+        that.src = myImages[newImgNumber];
+    }
+
+    //    event对象包含关于事件的所有信息，onclick="changeImg(event);
+</script>
+</body>
+</html>
