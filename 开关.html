@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    【儿科“神药”匹多莫德遭扒皮：国外尚处试验阶段
+    国内一年卖几十亿】北京和睦家医院药师门诊主任冀连梅透露，匹多莫德这个进口药在国外医学临床试验尚处于小白鼠阶段，疗效尚不明确，但在我国却摇身一变成了价格昂贵的“神药”，在各大医院儿科滥用，2016年销售额预计达到40亿元。冀连梅建议相关部门对匹多莫德的临床疗效进行再评价。（by北京青年报）
+</div>
+<script>
+    var box = document.querySelector('.box');
+    var concent = box.innerHTML;
+    var flag = false;
+    //加载时就触发
+    box.innerHTML= concent.substring(0, 100) + '...' + '<a href="javascript:;">展开</a>';
+    var link = box.querySelector('a');
+    link.onclick = function () {
+        if(flag){
+            box.innerHTML = concent.substring(0, 100) + '...' + '<a href="javascript:;">展开</a>';
+
+        }else{
+            box.innerHTML = concent + '<a href="javascript:;">关闭</a>';
+        }
+        flag = !flag;
+        link = box.querySelector('a');
+        link.onclick = this.onclick;
+
+    }
+</script>
+
+</body>
+</html>

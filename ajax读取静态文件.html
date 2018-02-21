@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="ajax">
+<form action="http://www.baidu.com" method="get">
+    用户名：<input type="text" name="username"><br>
+    密码：<input type="password" name="password"><br>
+    <input type="submit">
+</form>
+<script>
+    var input = document.querySelector('input');
+    input.onclick = function () {
+        ajax('ajax.txt?t=' + new Date().getTime(), function (str) {
+            alert(str);
+        }, function () {
+            alert('error')
+        })
+    };
+    //循环数据
+    input.onclick = function () {
+        ajax('a.txt', function (str) {
+            var arr = eval(str);
+            for (var i = 0; i < arr.length; i++) {
+                var li = document.createElement('li');
+                li.innerHTML = '用户名<span>' + arr[i].user + '</span>密码：<strong>' + arr[i].pass + '</strong>';
+            }
+        })
+    }
+    var oAjax = new XMLHttpRequest();
+    oAjax.open('GET', 'a.txt', true);
+    oAjax.send();
+    oAjax.onreadystatechange = function () {
+        if (oAjax.readyState == 4) {
+            if (oAjax.status == 200) {
+                alert('success' + oAjax.responseText);
+            } else {
+                alert('error' + oAjax.status);
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

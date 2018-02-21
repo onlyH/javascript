@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        li:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        li:nth-child(even) {
+            background-color: pink;
+        }
+
+        li:hover {
+            background-color: #cccccc;
+        }
+
+        .click {
+            background-color: darkgray !important;
+        }
+    </style>
+</head>
+<body>
+<ul class="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<script>
+    var list = document.querySelectorAll('li');
+    for (var i = 0; i < list.length; i++) {
+        list[i].old = list[i].className;
+        list[i].isclick = false;
+        list[i].onclick = function () {
+            this.className = this.isclick ? this.old : 'click';
+            this.isclick = !this.isclick;
+
+        }
+
+    }
+</script>
+</body>
+</html>

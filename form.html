@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main {
+            width: 80%;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+
+        form {
+        }
+
+        .label {
+            width: 44%;
+            margin: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+
+        }
+
+        label {
+            font-size: 15px;
+        }
+
+        input {
+            margin-left: 10px;
+            height: 27px;
+            width: 80%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .last {
+            width: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="main">
+
+    <form action="" id="form">
+        <div class="label">
+            <label for=""></label>机构名称<input type="text" id="mingcheng"></div>
+        <div class="label">
+            <label for=""></label>机构简称<input type="text"></div>
+        <div class="label">
+            <label for=""></label>&nbsp;&nbsp;&nbsp;注册号<input type="text"></div>
+        <div class="label">
+            <label for=""></label>机构代码<input type="text"></div>
+        <div class="label">
+            <label for=""></label>主体类型<input type="text">
+
+        </div>
+        <div class="label">
+            <label for=""></label>&nbsp;&nbsp;&nbsp;联系人<input type="text">
+
+        </div>
+
+        <div class="label">
+            <label for=""></label>&nbsp;&nbsp;&nbsp;手机号<input type="tel">
+
+        </div>
+        <div class="label">
+            <label for=""></label>邮箱地址<input type="email">
+
+        </div>
+        <div class="label">
+            <label for=""></label>注册地址<input type="text">
+
+        </div>
+        <div class="label">
+            <label for=""></label>办公地址<input type="text">
+
+        </div>
+        <div class="label">
+            <label for=""></label>登记类型<input type="text">
+
+        </div>
+        <div class="label">
+            <label for=""></label>注册基金<input type="text">
+
+        </div>
+        <div class="label">
+            <label for=""></label>成立日期<input type="date">
+
+        </div>
+        <div class="label">
+            <label for=""></label>营业期限<input type="date" style="width: 35% ">-<input type="date" style="width: 35%">
+
+        </div>
+        <input type="submit" class="last" value="save">
+    </form>
+</div>
+
+<script>
+    var form = document.getElementById('form');
+    form.addEventListener('submit', function (e) {
+        if (valid()) {
+            form.submit;
+        }
+        e.preventDefault();
+    })
+    function
+</script>
+</body>
+</html>

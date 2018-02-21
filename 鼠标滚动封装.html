@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            background-color: red;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box = document.querySelector('.box');
+    function move(ev) {
+        var moveTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var moveLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        return {x: moveLeft + ev.clientX, y: moveTop + ev.clientY}
+    }
+    document.onmousemove = function (ev) {
+        var e = ev || event;
+        //注意
+        var pos = move(e);
+        box.style.left = pos.x + 'px';
+        box.style.top = pos.y+ 'px';
+    }
+</script>
+</body>
+</html>

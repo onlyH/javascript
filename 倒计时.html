@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<p id="time">倒计时</p>
+<script>
+    window.onload = function () {
+        showTime();
+    };
+    function tf(i) {
+        if(i<10) {
+            i = "0" +i;
+        }else{
+            return i;
+        }
+        return i;
+    }
+
+    function showTime() {
+        var setTime = new Date();
+        var year = setTime.getFullYear();
+        var mon = setTime.getMonth() + 1;
+        var data = setTime.getDate();
+        var day = setTime.getDay();
+        var hour = setTime.getHours();
+        var min = setTime.getMinutes();
+        var second = setTime.getSeconds();
+        min= tf(min);
+        second= tf(second);
+        var arr = new Array(7);
+        arr[0] = '星期日';
+        arr[1] = '星期一';
+        arr[2] = '星期二';
+        arr[3] = '星期三';
+        arr[4] = '星期四';
+        arr[5] = '星期五';
+        arr[6] = '星期六';
+        document.getElementById('time').innerHTML = year + '年' + mon + '月' + data + '日' + arr[day] + hour + '时' + min + '分' + second + '秒';
+
+        setTimeout(showTime,500);
+    }
+
+
+
+   </script>
+</body>
+</html>

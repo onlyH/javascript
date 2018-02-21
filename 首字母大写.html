@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="bigger">
+    <div class="box">In the IT circle of China, there is a sentence called "the programmer eats the youthful meal", and many IT companies are not willing to hire older programmers. Therefore, it becomes very important to master advanced technology at a limited time. In order to help the newcomer little white quickly go to the top of the technology life, here is a front end learning experience summed up by a senior front-end worker.</div>
+<script>
+    var btn = document.querySelector('input');
+    var box = document.querySelector('.box');
+    var box_txt = box.innerHTML;
+
+    btn.onclick = function() {
+        var big_txt = box_txt.split(' ');
+        for(var i = 0; i<big_txt.length;i++) {
+            big_txt[i] = '<span>' + big_txt[i].charAt(0).toUpperCase() + '</span>' + big_txt[i].substring(1);
+        }
+        box.innerHTML= big_txt.join(' ');
+
+    }
+</script>
+</body>
+</html>

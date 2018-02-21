@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box = document.querySelector('.box');
+    var timer = null;
+    box.onclick = function () {
+        move(box, {
+            width: 100,
+            height: 100,
+            left: 600
+        });
+    };
+    function tf(obj, attr) {
+        if (obj.currentStyle) {
+            return obj.currentStyle[attr]
+        } else {
+            return getComputedStyle(obj, false)[attr];
+        }
+    }
+    //封装,json到达点
+    function move(obj, json) {
+        var n = 0;//第几步
+        var step = 30;//总共的步数
+        var star = {};//多个起始点
+        var end = {};//多个目标点
+        //循环所有的起始点
+        for (var attr in json) {
+//            所有的起始点
+            star[attr] = parseInt(tf(obj, attr));
+            //可移动范围 = json目标点 - 起始点
+            end[attr] = parseInt(json[attr] - star[attr]);
+
+        }
+        timer = setInterval(function () {
+            n++;
+            for(var attr in json) {
+                obj.style[attr] = star[attr] + end[attr] / step * n + 'px';
+
+            }
+
+            if (n == step) {
+                clearInterval(timer);
+            }
+        }, 30)
+    }
+</script>
+</body>
+</html>

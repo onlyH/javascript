@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="time">当前</div>
+<script>
+    window.onload = function () {
+        var time = document.getElementById('time');
+        var befor = new Date('2018,01,01');
+        var task = new Date();
+        var newTime = Math.ceil((befor.getTime() - task.getTime())/1000/60/60/24)
+        time.innerHTML = '还有'+newTime+'天就2018年了';
+    }
+</script>
+</body>
+</html>

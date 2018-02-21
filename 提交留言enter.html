@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" class="text1">
+<textarea cols="30" rows="10" style="display:block;"></textarea>
+<script>
+    var text1 = document.querySelector('.text1');
+    var text = document.querySelector('textarea');
+
+    text1.onkeydown = function (ev) {
+        var e = ev || event;
+        //if(e.keyCode ==13 && e.ctrlKey)
+        if (e.keyCode == 13) {
+            text.value += text1.value + '\n';
+            text1.value = '';
+        }
+    }
+</script>
+</body>
+</html>

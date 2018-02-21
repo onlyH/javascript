@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 20px;
+            background-color: #ccc;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .t1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .t2 {
+            position: absolute;
+            left: 380px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #00ff0a;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="t1"></div>
+    <div class="t2"></div>
+</div>
+<script>
+    var oBox = document.querySelector('.box');
+    var t1 = document.querySelector('.t1');
+    var t2 = document.querySelector('.t2');
+    var bw = oBox.offsetLeft;
+    var w = oBox.offsetWidth - t1.offsetWidth;
+
+    t1.onmousedown = function (e) {
+        //存储鼠标在元素的哪里
+        var ev = e || event;
+        //鼠标在盒子的哪个位置
+        var x = ev.clientX - bw - this.offsetLeft;
+        //鼠标移动
+        document.onmousemove = function (e) {
+            var ev = e || event;
+            // 元素在哪一块的位置 = 当前的鼠标的距离 - 鼠标在盒子的位置 -距离左边的位置
+            var newx = ev.clientX - x - bw;
+            //限制范围
+            newx <= 0 ? newx = 0 : newx;
+            newx >= w ? newx = w : newx;
+            //设定样式
+            t1.style.left = newx + 'px';
+            console.log(newx)
+        }
+        //取消事件
+        document.onmouseup = function () {
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+</script>
+</body>
+</html>

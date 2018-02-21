@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    window.onload = function () {
+        var box = document.querySelector('.box');
+        var left = 0;
+        var top = 0;
+        box.onmousedown = function (ev) {
+            var v = ev || event;
+//            鼠标的位置
+            top = ev.clientY - box.offsetTop;
+            left = ev.clientX - box.offsetLeft;
+            box.onmousemove = function (ev) {
+                var e = ev || event;
+//                盒子的位置
+                var l = ev.clientX - left;
+                var t = ev.clientY - top;
+                if (l < 0) {
+                    l = 0;
+                } else if (l > document.documentElement.clientWidth - box.offsetWidth) {
+                    l = document.documentElement.clientWidth - box.offsetWidth;
+                }
+                if (t < 0) {
+                    t = 0;
+                } else if (t > document.documentElement.clientHeight - box.offsetHeight) {
+                    t = document.documentElement.clientHeight - box.offsetHeight;
+                }
+                box.style.left = l + 'px';
+                box.style.top = t + 'px';
+            }
+            box.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                box.releaseCapture();
+            }
+            box.setCapture();
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

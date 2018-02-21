@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            /*background-color: transparent;*/
+        }
+
+        .box {
+            width: 1000px;
+            margin: 20px auto;
+        }
+
+        .info {
+            display: none;
+        }
+
+        .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .popup {
+            position: absolute;
+            width: 360px;
+            padding: 20px;
+            left: 50%;
+            background-color: #edf0f1;
+            border-radius: 8px;
+        }
+
+        .popup li {
+            margin-bottom: 10px;
+        }
+
+        .input {
+            width: 100%;
+            height: 44px;
+            padding: 0 10px;
+            display: block;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border: 2px solid red;
+        }
+
+        .button {
+            display: block;
+            height: 44px;
+            color: #ffffff;
+            background-color: #a40703;
+            border-radius: 6px;
+            font-size: 18px;
+            width: 100%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .ani {
+            animation-duration: .5s;
+            animation-fill-mode: both;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="info">
+        <a href="javascript:;" class="user_link">用户名</a> |
+        <a href="javascript:;" class="out_link">退出</a>
+    </div>
+    <div class="links">
+        <a href="javascript:;" class="login_link">登陆</a> /
+        <a href="javascript:;" class="reg_link">注册</a>
+    </div>
+    <!--弹出层-->
+    <div class="mask hide ani"></div>
+    <div class="popup hide ani">
+        <ul class="login">
+            <li><input type="text" class="input l_user"></li>
+            <li><input type="text" class="input l_pass"></li>
+            <li><label for="login_checked">
+                <input type="checkbox" id="login_checked">
+                <i> </i><span>记住我</span>
+            </label></li>
+            <li><input type="button" class="button l_btn" value="登录"></li>
+        </ul>
+
+        <ul class="reg hide ani">
+            <li><input type="text" class="input ruser"></li>
+            <li><input type="password" class="input rpass"></li>
+            <li><input type="password" class="input rpass2"></li>
+
+            <li><label for="reg_checked" class="label">
+                <input type="checkbox" id="reg_checked">
+                <i> </i><span>同意条款</span>
+            </label></li>
+            <li><input type="button" class="button rbtn" value="注册"></li>
+        </ul>
+    </div>
+</div>
+<script>
+    function $(ele) {
+        return document.querySelector(ele);
+    }
+    function setCookie(attr, value, day) {
+        var day = day || 0;
+        var d = new Date();
+
+        d.setDate(d.getDate() + day);
+
+        if (day) {
+            document.cookie = attr + '=' + value + ';path=/; expires=' + d;
+        } else {
+            document.cookie = attr + '=' + value + ';path=/;';
+        }
+    }
+    function getCookie(attr) {
+        var ck = document.cookie;
+        var arr = ck.split('; ');
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].indexOf(attr) != -1) {
+                return arr[i].substring(arr[i].indexOf('=') + 1)
+            }
+        }
+        return false;
+    }
+    function clearCookie(attr) {
+        setCookie(attr, '', -1)
+    }
+    var oInfo = $('.info'),
+            oLink = $('.links'),
+            userLink = $('.user_link'),
+            outLink = $('.out_link'),
+            loginLink = $('.login_link'),
+            regLink = $('.reg_link'),
+            oMask = $('.mask'),
+            loginBox = $('.login'),
+            oPop = $('.popup'),
+            regBox = $('.reg');
+    oMask.old = oMask.className;
+    oPop.old = oPop.className;
+
+
+    function linkshow(obj) {
+        oMask.style.display = 'block';
+        oPop.style.display = 'block';
+        obj.style.display = 'block';
+        oPop.style.top = (document.documentElement.clientHeight -
+                oPop.offsetHeight) / 2 + 'px';
+        oMask.className += ' fadeIn';
+        oPop.className += " fadeDown";
+    }
+    //登录
+    loginLink.onclick = function () {
+        linkshow(loginBox);
+    };
+    //注册
+    regLink.onclick = function () {
+        linkshow(regBox);
+    };
+    //遮罩
+    oMask.onclick = function () {
+        hide();
+    }
+    function hide() {
+        oMask.className = oMask.old + ' fadeIn';
+        oPop.className = oPop.old + 'fadeDown';
+
+        setTimeout(function () {
+            oMask.style.display = 'none';
+            oPop.style.display = 'none';
+
+            oMask.className = oMask.old;
+            oPop.className = oPop.old;
+
+            loginBox.style.display = 'none';
+            regBox.style.display = 'none';
+        }, 500)
+    }
+    var lBtn = $('.l_btn'),
+            lUser = $('.l_user'),
+            lPass = $('.l_pass'),
+            lCheck = $("#login_checked");
+    //生成密钥
+    var arr = ["a", "b", "c", "d", "e", "f", "j", "h", "i", "g", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+        "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3"];
+    var str = '';
+    for (var i = 0; i < 20; i++) {
+        str += arr[parseInt(Math.random() * arr.length)];
+    }
+    console.log(str);
+    //登录按钮点击
+    lBtn.onclick = function () {
+        userLink.innerHTML = lUser.value;
+        oInfo.style.display = 'block';
+        oLink.style.display = 'none';
+        if (lCheck.checked) {
+            setCookie('username', lUser.value, 10);
+            setCookie('password', str, 10);
+        }
+        hide();
+
+    };
+    //注册
+    var rUser = $('.ruser'),
+            rPass = $('.rpass'),
+            rPass2 = $('.rpass2'),
+            rBtn = $('.rbtn'),
+            oReg_check = $('#reg_checked');
+    rBtn.onclick = function () {
+        if (oReg_check.checked) {
+            if (rUser.value != '' && rPass.value != '' && rPass2.value != ''
+                    && rPass.value == rPass2.value) {
+                userLink.innerHTML = rUser.value;
+                setCookie('username', rUser.value, 10);
+                oInfo.style.display = 'block';
+                oLink.style.display = 'none';
+                hide();
+            }
+        } else {
+            alert('请同意');
+            return false;
+        }
+    }
+
+    //退出，清掉cookie
+    outLink.onclick = function () {
+        clearCookie('username');
+        oInfo.style.display = 'none';
+        oLink.style.display = 'block';
+    }
+    //检测是否有存过cookie
+    window.onload = function () {
+        if (getCookie('username')) {
+            userLink.innerHTML = getCookie('username');
+            oInfo.style.display = 'block';
+            oLink.style.display = 'none';
+        }
+    }
+
+</script>
+</body>
+</html>

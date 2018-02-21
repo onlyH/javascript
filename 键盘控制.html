@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: #ccc0b3;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box = document.querySelector('.box');
+    document.onkeydown = function (ev) {
+        var e = ev || event;
+        if (e.keyCode == 37) {
+            box.style.left = box.offsetLeft - 10 + 'px';
+        }
+        if (e.keyCode == 39) {
+            box.style.left = box.offsetLeft + 10 + 'px';
+        }
+    }
+</script>
+</body>
+</html>

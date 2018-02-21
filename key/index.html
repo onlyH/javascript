@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title {
+            width: 400px;
+            height: 70px;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 30px;
+            border: 1px solid black;
+            font-size: 24px;
+            font-weight: 600;
+            color: red;
+        }
+
+        .btns {
+            width: 190px;
+            height: 30px;
+            margin: 0 auto;
+            border: 1px solid #cccccc;
+        }
+
+        .btns span {
+            display: inline-block;
+            float: left;
+            width: 80px;
+            height: 25px;
+            line-height: 25px;
+            background: cornflowerblue;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-right: 10px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="title" class="title">开始抽奖啦</div>
+<div class="btns">
+    <span id="play">开始</span>
+    <span id="stop">结束</span>
+</div>
+<script>
+    var play = document.getElementById('play');
+    var stop = document.getElementById('stop');
+
+    window.onload = function () {
+        var a = ['500万', '谢谢参与', 'MacBook', 'hp笔记本', '单反相机', '充值卡'];
+        var timer = null;
+        var flag = 0;
+        play.onclick = start;
+        stop.onclick = cancel;
+
+        function start() {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var title = document.getElementById('title');
+                var random = Math.floor(Math.random() * a.length);
+                title.innerHTML = a[random];
+                play.style.background = "gray";
+            }, 50);
+        }
+
+        function cancel() {
+            clearInterval(timer);
+            play.style.background = "cornflowerblue";
+        };
+        document.onkeyup = function (event) {
+            event = event || window.event;
+            if (event.keyCode === 13) {
+                if (flag == 0) {
+                    start();
+                    flag = 1;
+                } else {
+                    cancel();
+                    flag = 0;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

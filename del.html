@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = '12b 3j4h3k fe323d f43 4t5y 33';
+    var arr = [];
+    var b = '';
+    for (var i = 0; i < str.length; i++) {
+        if(str.charAt(i)>'0' && str.charAt(i)<'9') {
+            b += str.charAt(i);
+        }else{
+            if(b) {
+                arr.push(b);
+                b='';
+            }
+        }
+    }
+    if(b) {
+        arr.push(b);
+        tmp=''
+    }
+    alert(arr)
+</script>
+</body>
+</html>

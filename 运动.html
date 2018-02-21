@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 10px;
+            left: 0px;
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+
+</div>
+<script>
+    var box = document.querySelector('.box');
+    var timer = null;
+    var n = 0;//第几部
+    var step = 30;//步数
+    var total = 400;//距离
+
+    box.onclick = function () {
+        var off = box.offsetLeft;//盒子离左侧的距离
+
+        timer = setInterval(function () {
+            n++;
+            box.style.left = off + total / step * n + 'px';
+            if(n ==step) {
+                clearInterval(timer);
+            }
+        },30)
+
+
+    }
+</script>
+</body>
+</html>

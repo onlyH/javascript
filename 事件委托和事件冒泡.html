@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list {
+            width: 100%;
+            background-color: yellow;
+        }
+
+        li {
+            list-style: none;
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            display: inline-block;
+
+        }
+    </style>
+</head>
+<body>
+<ul class="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<script>
+    var oUl = document.querySelector('.list');
+    var oLi = document.querySelector('li')
+    oUl.onclick = function (e) {
+        var ev = e || event;
+        ev.isclick = false;
+        if (ev.srcElement.tagName.toLowerCase() == 'li') {
+            if (ev.srcElement.isclick) {
+                ev.srcElement.style.backgroundColor = 'green';
+                ev.srcElement.isclick = false;
+            } else {
+                ev.srcElement.style.backgroundColor = 'pink';
+                ev.srcElement.isclick = true;
+            }
+        }
+    }
+</script>
+</body>
+</html>

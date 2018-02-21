@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 1000px;
+            margin: 0 auto;
+            border: 1px solid #cccccc;
+        }
+
+        .list {
+            width: 1000px;
+        }
+
+        .list li {
+            width: 30%;
+            display: inline-block;
+            padding: 10px;
+        }
+
+        input {
+            display: inline-block;
+            width: 1000px;
+            height: 30px;
+            background-color: greenyellow;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="list">
+
+    </ul>
+    <input type="button" value="换一换">
+    <script>
+        var list = document.querySelector('.list');
+        var btn = document.querySelector('input');
+        var arr = [
+            '春天在哪里呀',
+            '春天在哪里',
+            '春天在那青翠的山林里',
+            '这里有红花呀',
+            '这里有绿草',
+            '还有那会唱歌的小黄鹂',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '春天在青翠的山林里',
+            '还有那会唱歌的小黄鹂',
+            '春天在哪里呀',
+            '春天在哪里乐谱',
+            '春天在哪里',
+            '春天在那湖水的倒影里',
+            '映出红的花呀',
+            '映出绿的草',
+            '还有那会唱歌的小黄鹂',
+            '春天在哪里呀',
+            '春天在哪里',
+            '春天在那青翠的山林里',
+            '这里有红花呀',
+            '这里有绿草',
+            '还有那会唱歌的小黄鹂',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '春天在青翠的山林里',
+            '还有那会唱歌的小黄鹂',
+            '春天在哪里呀',
+            '春天在哪里乐谱',
+            '春天在哪里',
+            '春天在那湖水的倒影里',
+            '映出红的花呀',
+            '映出绿的草',
+            '春天在哪里呀',
+            '春天在哪里',
+            '春天在那青翠的山林里',
+            '这里有红花呀',
+            '这里有绿草',
+            '还有那会唱歌的小黄鹂',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '春天在青翠的山林里',
+            '还有那会唱歌的小黄鹂',
+            '春天在哪里呀',
+            '春天在哪里乐谱',
+            '春天在哪里',
+            '春天在那湖水的倒影里',
+            '映出红的花呀',
+            '映出绿的草',
+            '还有那会唱歌的小黄鹂',
+            '春天在哪里呀',
+            '春天在哪里',
+            '春天在那青翠的山林里',
+            '这里有红花呀',
+            '这里有绿草',
+            '还有那会唱歌的小黄鹂',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '嘀哩哩嘀哩嘀哩哩嘀哩哩嘀哩哩',
+            '春天在青翠的山林里',
+            '还有那会唱歌的小黄鹂',
+            '春天在哪里呀',
+            '春天在哪里乐谱',
+            '春天在哪里',
+            '春天在那湖水的倒影里',
+            '映出红的花呀',
+            '映出绿的草',
+
+
+        ];
+        var n = 0;
+
+        btn.onclick = function () {
+            list.innerHTML = '';
+            for (var i = 0 + n; i < 21 + n; i++) {
+                var oLi = document.createElement('li');
+                oLi.innerHTML = arr[i];
+                list.appendChild(oLi);
+            }
+            n += 21;
+
+        }
+    </script>
+</div>
+</body>
+</html>

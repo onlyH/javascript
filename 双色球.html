@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 100px;
+        }
+
+        .qiu {
+            display: inline-block;
+        }
+
+        .qiu span {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .qiu span:last-child {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="qiu">
+    </div>
+    <input type="button" value="换一换">
+</div>
+<script>
+    var oInput = document.querySelector('input');
+    var qiu = document.querySelector('.qiu')
+    var arr = [];
+
+    oInput.onclick = function () {
+        qiu.innerHTML = ''
+        //1-32个数
+        for (var i = 0; i < 32; i++) {
+            arr[i] = i;
+        }
+//        打乱
+        arr.sort(function(a,b) {
+            return Math.random() -Math.random()
+        });
+        arr.length = 6;
+
+        //蓝球
+        arr.push(parseInt(Math.random()*16 +1));
+
+
+        //加入span
+     for(var i = 0; i<arr.length;i++) {
+         var oSpan = document.createElement('span');
+         //给球赋值
+         oSpan.innerHTML = arr[i];
+         qiu.appendChild(oSpan)
+     }
+
+    }
+</script>
+<script>
+
+</script>
+</body>
+</html>

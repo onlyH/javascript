@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+<script>
+    function move(ev) {
+        var moveTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var moveLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        return {x: moveLeft + ev.clientX, y: moveTop + ev.clientY}
+    }
+    var odiv = document.querySelectorAll('div');
+    document.onmousemove = function (e) {
+        var ev = e || event;
+        var pos = move(ev);
+        for (var i = odiv.length-1; i > 0; i--) {
+            odiv[i].style.left = odiv[i - 1].offsetLeft + 'px';
+            odiv[i].style.top = odiv[i - 1].offsetTop + 'px';
+        }
+        odiv[0].style.left = pos.x + 'px';
+        odiv[0].style.top = pos.y + 'px';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            width: 100px;
+        }
+
+        #good {
+            border: 1px solid indianred;
+        }
+
+        #see {
+            border: 1px solid greenyellow;
+        }
+
+        #bad {
+            border: 1px solid cornflowerblue;
+        }
+
+        #button {
+            background-color: blueviolet;
+            color: #ffffff;
+            border: none;
+        }
+
+        .jdt {
+            width: 100%;
+            background-color: yellow;
+        }
+
+        .j1 {
+            background-color: indianred;
+            height: 10px;
+            width: 0;
+        }
+
+        .j2 {
+            background-color: greenyellow;
+            height: 10px;
+            width: 0;
+        }
+
+        .j3 {
+            background-color: blueviolet;
+            height: 10px;
+            width: 0;
+        }
+
+    </style>
+</head>
+<body>
+<input type="text" placeholder="好评" id="good">
+<input type="text" placeholder="中评" id="see">
+<input type="text" placeholder="差评" id="bad">
+<input type="button" value="计算" id="button">
+
+<div>
+    <p>好评<span></span></p>
+    <div class="jdt">
+        <div class="j1"></div>
+    </div>
+</div>
+
+<div>
+    <p>中评<span></span></p>
+    <div class="jdt">
+        <div class="j2"></div>
+    </div>
+</div>
+
+<div>
+    <p>差评<span></span></p>
+    <div class="jdt">
+        <div class="j3"></div>
+    </div>
+</div>
+<script>
+    var good = document.getElementById('good');
+    var see = document.getElementById('see');
+    var bad = document.getElementById('bad');
+    var button = document.getElementById('button');
+    var span = document.querySelectorAll('span');
+
+    var j1 = document.querySelector('.j1');
+    var j2 = document.querySelector('.j2');
+    var j3 = document.querySelector('.j3');
+
+    var total = 0;
+
+
+    button.onclick = function () {
+        total = parseInt(good.value) + parseInt(see.value) + parseInt(bad.value);
+
+        j1.style.width = good.value / total * 100 + '%';
+        j2.style.width = see.value / total * 100 + '%';
+        j3.style.width = bad.value / total * 100 + '%';
+
+        span[0].innerHTML = parseInt(j1.style.width).toFixed(2) + '%';
+        span[1].innerHTML = parseInt(j2.style.width).toFixed(2) + '%';
+        span[2].innerHTML = parseInt(j3.style.width).toFixed(2) + '%';
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

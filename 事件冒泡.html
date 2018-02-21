@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="bubble"></div>
+<script>
+   /* window.onload = function () {
+        var aUl = document.getElementById('bubble');
+        var aLi = document.getElementsByTagName('li');
+
+        for(var i = 0; i<aLi.length.i++) {
+            aLi[i].onmouseover = function () {
+                this.style.backgroundColor = 'blue'
+            };
+            aLi[i].onmouseout = function () {
+                this.style.backgroundColor = '';
+            }
+        }
+    }*/
+
+    //事件委托
+    window.onload = function () {
+        var aUl = document.getElementById('bubble');
+        var aLi = document.getElementsByTagName('li');
+
+        aUl.onmouseover = function (ev) {
+            var ev = ev || window.event;
+            var target = ev.target || ev.srcElement;
+
+            if(target.nodeName.toLowerCase() == 'li') {
+                target.style.background = 'blue';
+            }
+        };
+        aUl.onmouseout = function (ev) {
+            var ev = ev || window.event;
+            var target = ev.target || ev.srcElement;
+
+            if(target.nodeName.toLowerCase() == 'li') {
+                target.style.background = ''
+            }
+        }
+    }
+    function stop(ev) {
+        if(ev.cancelBubble) {
+            window.cancelBubble = true;
+        }else{
+            ev.stopPropagation()
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box = document.querySelector('.box');
+    var timer = null;
+    box.onclick = function () {
+        move(box, 'left');
+    };
+
+    function tf(obj, attr) {
+        if (obj.currentStyle) {
+            return obj.currentStyle[attr];
+        } else {
+            return getComputedStyle(obj, false)[attr];
+        }
+    }
+    ;
+    //封装
+    function move(obj, attr) {
+        var n = 0; //第几步
+        var step = 30; //总共的步数
+        var total = 400 - obj.offsetLeft;//目标点
+        var box_l = parseInt(tf(obj, attr));//开始的位置
+        timer = setInterval(function () {
+            n++;
+            obj.style[attr] = box_l + total / step * n + 'px';
+            if (n == step) {
+                clearInterval(timer);
+            }
+        }, 30)
+    }
+</script>
+</body>
+</html>

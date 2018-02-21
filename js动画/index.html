@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background: indianred;
+            left: -200px;
+            top: 0;
+        }
+
+        #div1 span {
+            width: 20px;
+            height: 50px;
+            background: cornflowerblue;
+            position: absolute;
+            left: 200px;
+            top: 75px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"><span id="share">分享</span></div>
+<script>
+
+
+    window.onload = function () {
+        var div1 = document.getElementById('div1');
+        var timer = null;
+        div1.onmouseover = function () {
+            oShare(0);
+        };
+        div1.onmouseout = function () {
+            oShare(-200);
+        };
+        function oShare(targets) {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var speed = 0;
+                if(div1.offsetLeft > targets) {
+                    speed = -10;
+                }else{
+                    speed = 10;
+                }
+                if (div1.offsetLeft == targets) {
+                    clearInterval(timer);
+                } else {
+                    div1.style.left = div1.offsetLeft + speed + 'px';
+                }
+            },50)
+        }
+    }
+</script>
+</body>
+</html>

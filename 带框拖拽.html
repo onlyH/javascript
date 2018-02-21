@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+        }
+
+        .box2 {
+            border: 1px solid #ccc0b3;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box = document.querySelector('.box');
+    var x = 0;
+    var y = 0;
+    box.onmousedown = function (ev) {
+        var e = ev || event;
+        x = ev.clientX - box.offsetLeft;
+        y = ev.clientY - box.offsetTop;
+
+        var box2 = document.createElement('div');
+        box2.className = 'box2';
+        box2.style.width = box.offsetWidth + 'px';
+        box2.style.height = box.offsetHeight + 'px';
+
+        box2.style.left = box.offsetLeft + 'px';
+        box2.style.top = box.offsetTop + 'px';
+        document.body.appendChild(box2);
+
+
+        document.onmousemove = function (ev) {
+            var e = ev || event;
+            var l = ev.clientX - x;
+            var t = ev.clientY - y;
+
+            if (l < 0) {
+                l = 0;
+            } else if (l > document.documentElement.clientWidth - box.offsetWidth) {
+                l = document.documentElement.clientWidth - box.offsetWidth;
+            }
+            if (t < 0) {
+                t = 0;
+            } else if (t > document.documentElement.clientHeight - box.clientHeight) {
+                t = document.documentElement.clientHeight - box.clientHeight;
+            }
+
+            box2.style.left = l + 'px';
+            box2.style.top = t + 'px';
+
+
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+            box.style.left = box2.offsetLeft + 'px';
+            box.style.top = box2.offsetTop + 'px';
+            document.body.removeChild(box2);
+        }
+    }
+</script>
+</body>
+</html>

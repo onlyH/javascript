@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function createPerson(name,qq) {  //构造函数--创建一个类
+        //原料
+        var person = new Object();
+        //加工
+        person.name = name;
+        person.qq = qq;
+
+        person.showName = function () {
+            alert(this.name)
+        }
+        person.showQQ = function () {
+            alert(this.qq);
+        }
+        //出厂
+        return person;
+    }
+    var obj = createPerson('lee','2343252345');//没有 new
+    var obj2 = createPerson('duu','6456456');
+    alert(obj.showName == obj2.showName)//false
+    obj.showName();
+    obj.showQQ();
+    /*
+    * 问题：
+    * 没有new
+    * 函数重复--资源浪费
+    * */
+</script>
+</body>
+</html>

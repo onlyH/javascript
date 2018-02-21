@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box = document.querySelector('.box');
+    box.onmousedown = fnDown;
+
+    function fnDown(ev) {
+        var e = ev || event;
+        var x = ev.clientX - box.offsetLeft;
+        var y = ev.clientY - box.offsetTop;
+        document.onmousemove = fnMove;
+        function fnMove(ev) {
+            var e = ev || event;
+            var l = ev.clientX - x;
+            var t = ev.clientY - y;
+
+            box.style.left = l + 'px';
+            box.style.top = t + 'px';
+        }
+
+        document.onmouseup = fnUp;
+        function fnUp() {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+</script>
+</body>
+</html>

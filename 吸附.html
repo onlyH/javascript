@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .box2 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background-color: #ccc0b3;
+        }
+    </style>
+</head>
+<body>
+<div class="box2">
+    <div class="box"></div>
+</div>
+<script>
+    window.onload = function () {
+        var box = document.querySelector('.box');
+        var box2 = document.querySelector('.box2');
+        var left = 0;
+        var top = 0;
+        box.onmousedown = function (ev) {
+            var v = ev || event;
+//            鼠标的位置
+            top = ev.clientY - box.offsetTop;
+            left = ev.clientX - box.offsetLeft;
+            document.onmousemove = function (ev) {
+                var e = ev || event;
+//                盒子的位置
+                var l = ev.clientX - left;
+                var t = ev.clientY - top;
+                if (l < 50) {
+                    l = 0;
+                } else if (l > box2.offsetWidth - box.offsetWidth) {
+                    l = box2.offsetWidth - box.offsetWidth;
+                }
+                if (t < 50) {
+                    t = 0;
+                } else if (t > box2.offsetHeight - box.offsetHeight) {
+                    t = box2.offsetHeight - box.offsetHeight;
+                }
+                box.style.left = l + 'px';
+                box.style.top = t + 'px';
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+        }
+    }
+</script>
+</body>
+</html>

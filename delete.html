@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li>123</li>
+        <p>www</p>
+    </ul>
+</div>
+<script>
+    var box = document.querySelector('.box');
+    var oul = document.querySelector('ul');
+    var oh2 = document.createElement('h2');
+    oh2.innerHTML = '666';
+    box.insertBefore(oh2,oul)
+</script>
+</body>
+</html>

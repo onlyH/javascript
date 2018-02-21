@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            margin:10px;
+        }
+        .box span{
+            border:1px solid #cccccc;
+            padding: 0 20px;
+            margin:0 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<p>单价：<em>88</em> 元</p>
+<input type="button" value="-" id="btn1">
+<input type="text" value="1" id="input">
+<input type="button" value="+" id="btn2">
+
+<script>
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var input = document.getElementById('input');
+    var em = document.querySelector('em');
+    var span = document.querySelectorAll('span');
+
+    var n = 1;
+    var total = em.innerHTML;
+
+    btn1.onclick = function() {
+        n--;
+        if(n == '0') n = 1;
+        change()
+    };
+    btn2.onclick = function() {
+        n++;
+        change()
+    }
+    function change() {
+        input.value = n;
+        span[0].innerHTML = ((n * total) / 3).toFixed(2) + 'x三期';
+        span[1].innerHTML = ((n * total) / 6).toFixed(2) + 'x六期'
+        span[2].innerHTML = ((n * total) / 12).toFixed(2) + 'x十二期'
+        span[3].innerHTML = ((n * total) / 24).toFixed(2) + 'x二十四期'
+
+    }
+    change();
+</script>
+</body>
+</html>

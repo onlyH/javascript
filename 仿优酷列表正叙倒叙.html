@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .list {
+            list-style: none;
+            width: 200px;
+            margin: 5% auto;
+        }
+
+        li {
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            padding: 5px;
+        }
+
+        span {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            display: inline-block;
+            background-color: yellow;
+        }
+
+        input {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="正叙" class="z">
+<input type="button" value="倒叙" class="d">
+<ul class="list">
+    <li><span>1</span>我是第一个</li>
+    <li><span>2</span>我是第二个</li>
+    <li><span>3</span>我是第三个</li>
+    <li><span>4</span>我是第四个</li>
+    <li><span>5</span>我是第五个</li>
+
+</ul>
+<script>
+    var list = document.querySelector('.list');
+    var oli = document.querySelectorAll('li');
+    var z = document.querySelector('.z');
+    var d = document.querySelector('.d');
+    var arr = [];
+
+    for (var i = 0; i < oli.length; i++) {
+        arr[i] = oli[i];
+    }
+
+    d.onclick = function () {
+        arr.sort(function (a, b) {
+            return b.querySelector('span').innerHTML - a.querySelector('span').innerHTML;
+        });
+remList();
+    }
+    z.onclick = function () {
+        arr.sort(function(a,b) {
+            return a.querySelector('span').innerHTML - b.querySelector('span').innerHTML;
+        })
+        remList();
+    }
+    function remList() {
+        list.innerHTML = '';
+        for (var i = 0; i < oli.length; i++) {
+            list.innerHTML += '<li>' + arr[i].innerHTML + '</li>'
+        }
+    }
+</script>
+</body>
+</html>

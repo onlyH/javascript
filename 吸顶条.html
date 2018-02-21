@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tiao {
+            height: 40px;
+            width: 100%;
+            background-color: red;
+        }
+
+        .ding {
+            height: 40px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<div class="tiao"></div>
+<div class="ding"></div>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+<p>回复 iu 啊互粉互粉weaf</p>
+<p>rehgiuwfwajfweq</p>
+<p>恶搞维阿 u 和日文钱而且品味</p>
+
+<script>
+    var list = document.querySelector('.tiao');
+    var ding = document.querySelector('.ding');
+    var bartop = list.offsetTop;
+    window.onscroll = function () {
+        //滚动的距离
+        var str = document.body.scrollTop || document.documentElement.scrollTop;
+        if (str >= bartop) {
+            list.style.cssText = 'position:fixed;height:40px;width:100%;left:0;top:0';
+            ding.style.display = 'block'
+        } else {
+            list.style.cssText = '';
+            ding.style.display = 'none'
+        }
+
+    }
+</script>
+
+</body>
+</html>

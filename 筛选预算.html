@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .box {
+            width: 400px;
+            margin: 10px auto;
+            border: 1px solid #0C4E7C;
+        }
+
+        a {
+            display: inline-block;
+            width: 70px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #cccccc;
+        }
+
+        input {
+            width: 170px;
+            height: 40px;
+            line-height: 40px;
+            background-color: cornflowerblue;
+            color: #ffffff;
+            border: none;
+            display: inline-block;
+            margin: 10px auto;
+            vertical-align: middle;
+
+        }
+
+        .a_colir {
+            background-color: indianred
+        }
+
+        .btn-bgc {
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <a href="javascript:;" class="a_colir">111</a>
+    <a href="javascript:;">222</a>
+    <a href="javascript:;">333</a>
+    <a href="javascript:;">444</a>
+    <a href="javascript:;">555</a>
+    <input type="button" value="确认">
+</div>
+<script>
+    var box = document.querySelector('.box');
+    var alink = document.getElementsByTagName('a');
+    var btn = document.querySelector('.box input');
+
+    for (var i = 0; i < alink.length; i++) {
+        alink[i].id = i;
+        alink[i].isclick = false;
+        alink[i].onclick = function () {
+            if (this.isclick) {
+                alink[this.id].className = '';
+                alink[this.id].isclick = false;
+                btn.className = ''
+            } else {
+                for (var i = 0; i < alink.length; i++) {
+                    alink[i].className = '';
+                    alink[i].isclick = false;
+                    btn.className = 'btn-bgc'
+
+                }
+                alink[this.id].className = 'a_colir';
+                alink[this.id].isclick = true;
+
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

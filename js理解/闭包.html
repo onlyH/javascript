@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function f1() {
+        var a = 99;
+
+        function f2() {
+            alert(a);
+        }
+
+        return f2;
+    }
+    //能够读取其他函数内部变化的函数--闭包--定义在一个函数内部的函数--这些变量的值始终保持在内存中
+
+    function f1() {
+        var n = 99;
+        nAdd = function () {
+            n += 1;
+        };
+        function f2() {
+            alert(n);
+        }
+
+        return f2;
+    }
+    var result = f1();
+    result();//99
+    nAdd();
+    result();//1000
+    /*
+     因为f1是f2的父级，f2被赋值给一个全局变量，所以f2始终在内存中，f2又依赖于f1，所以f1也在内存中，调用后不会被垃圾回收机制回收
+     nAdd是一个全局变量，值是匿名函数，匿名函数本身也是闭包，相当于setter，可以在函数外部对函数内部的局部变量进行操作
+     */
+
+    var name = 'the window';
+    var object = {
+        name: 'my object',
+        getName: function () {
+            return function () {
+                return this.name;
+            }
+        }
+    }
+    alert(object.getName()());
+
+    var name = 'the window';
+    var object = {
+        name: 'my object',
+        getName: function () {//闭包会在父函数外部，改变父函数内部变量的值
+            var that = this;
+            return function () {
+                return this.name;
+            }
+        }
+    };
+    alert(object.getName()())
+
+    function test() {
+        alert(this.a)
+    }
+    var b = {};
+    b.a = 2;
+    b.c = test;
+    b.c();
+
+    function test() {
+        alert(this.a);
+    }
+    var b = {};
+    b.a = 1;
+    b.c = test;
+    b.c();
+
+    function test() {
+        this.x = 1;
+    }
+    var b = new test();
+    alert(b.x);
+
+    var x = 2;
+    function test() {
+        this.x = 1;
+    }
+    var o = new test();
+    alert(x);
+
+    //    apply改变函数的调用对象
+
+    var a = 1;
+    function tezt() {
+        alert(this.a);
+    }
+    var o = {};
+    o.x = 2;
+    o.m = test;
+    o.m.apply();
+
+    var Cat = {
+        name: '',
+        color: ''
+    }
+    var cat1 = {};
+    cat1.name = 'lee';
+    cat1.color = 'ree'
+
+    function Cat(name, color) {
+        return {
+            name: name,
+            color: color
+        }
+    }
+    var cat1 = Cat('kee', 'lee');
+    var cat2 = Cat('ee', 'aa');
+
+    function CAt(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    CAt.prototype.run = function () {
+        alert(this.name + this.color)
+    }
+    var cat = new CAt('lee', 12)
+    alert(cat.constructor == CAt)
+    alert(cat instanceof CAt)
+
+
+</script>
+</body>
+</html>

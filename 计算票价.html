@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            border: 1px solid #cccccc;
+            width: 30px;
+            height: 30px;
+        }
+
+        input[type='text'] {
+            text-align: center;
+            width: 40px;
+        }
+
+        strong {
+            color: red
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="-" id="subtract">
+<input type="text" id="input" value="1">
+<input type="button" value="+" id="add">
+成人
+
+<input type="button" value="-" id="subtract2">
+<input type="text" id="input2" value="0">
+<input type="button" value="+" id="add2">
+儿童
+
+<div class="box">
+    <em>总价 &yen;</em>
+    <strong>345</strong>
+    <span class="adult">1</span> * &yen;100 +
+    <span class="child">0</span> * &yen;80
+</div>
+<script>
+    var subtract = document.getElementById('subtract');
+    var input1 = document.getElementById('input');
+    var add = document.getElementById('add');
+
+
+    var subtract2 = document.getElementById('subtract2');
+    var input2 = document.getElementById('input2');
+    var add2 = document.getElementById('add2');
+
+    var adult_money = 100;
+    var child_money = 80;
+
+    var total = document.querySelector('.box strong');
+    var adult = document.querySelector('.adult');
+    var child = document.querySelector('.child');
+
+    function change() {
+        total.innerHTML = input1.value * adult_money + input2.value * child_money;
+        adult.innerHTML = input1.value;
+        child.innerHTML = input2.value;
+    }
+    change();
+
+    function sale(obj,btn1,btn2) {
+        btn1.onclick = function () {
+            if (obj.value == '0') return false;
+            obj.value = parseInt(obj.value) - 1;
+            change();
+        };
+        btn2.onclick = function () {
+            obj.value = parseInt(obj.value) + 1;
+            change();
+        }
+    };
+    sale(input1,subtract,add);
+    sale(input2,subtract2,add2)
+</script>
+</body>
+</html>

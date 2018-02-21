@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="add">
+
+<script>
+    var oInput = document.querySelector('input');
+    oInput.onclick = function() {
+        var oDiv = document.createElement('div');
+        oDiv.style.cssText = 'height:300px;width:300;background:red';
+        oDiv.innerHTML = "lalala";
+
+        document.body.appendChild(oDiv)
+    }
+</script>
+</body>
+</html>

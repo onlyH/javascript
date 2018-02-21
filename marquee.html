@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            border: 3px solid black;
+            margin:50px auto 0;
+            padding: 10px;
+        }
+        dl,dt{
+            list-style: none;
+        }
+        dl dt{
+            line-height: 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <dl>
+        <dt>(默认)</dt>
+        <dd>
+            <marquee behavior="" direction="">我默认向左滚。。。。。</marquee>
+        </dd>
+    </dl>
+    <dl>
+        <dt>向右</dt>
+        <dd>
+            <marquee behavior="" direction="right" scrolldelay="500">我向右滚。。。。。</marquee>
+        </dd>
+    </dl>
+    <dl>
+        <dt>alternate，循环三次，速度为2</dt>
+        <dd>
+            <marquee behavior="alternate" scrollamout="2" loop="3">我来回滚。。。。。</marquee>
+        </dd>
+    </dl>
+    <dl>
+        <dt>(向上)</dt>
+        <dd>
+            <marquee behavior="" direction="up" bgcolor="#ccff66" height="55" width="250">我向上滚。。。。。</marquee>
+        </dd>
+    </dl>
+</div>
+</body>
+</html>

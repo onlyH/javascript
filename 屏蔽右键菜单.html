@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            position: absolute;
+            width: 150px;
+            background-color: #ccc0b3;
+            display: none;
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <ul>
+        <li>这是菜单1</li>
+        <li>这是菜单2</li>
+        <li>这是菜单3</li>
+        <li>这是菜单4</li>
+    </ul>
+    <script>
+        var box = document.querySelector('.box');
+        document.oncontextmenu = function (ev) {
+            var e = ev || event;
+            box.style.display = 'block';
+            box.style.left = e.clientX + 'px';
+            box.style.top = e.clientY +'px';
+            return false;
+        }
+        document.onclick = function (ev) {
+            var e = ev || event;
+            box.style.display = 'none';
+        }
+
+    </script>
+</div>
+</body>
+</html>

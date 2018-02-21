@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="time">当前</div>
+<script>
+
+    function timer(){
+        var time = document.getElementById('time');
+        var afterTime = new Date('2018/12/26,23:22:21');
+        var current = new Date();
+        var newTime = Math.ceil((afterTime.getTime() - current.getTime()) / 1000);
+        var data = Math.ceil(newTime / 60 / 60 / 24);
+        var hour = Math.ceil((newTime / 60 / 60) % 24);
+        var min = Math.ceil((newTime / 60) % 60);
+        var second = Math.ceil((newTime % 60));
+        time.innerHTML = '还剩下'+data+'天'+hour+'时'+min+'分'+second+'秒';
+        setTimeout(timer,500)
+    }
+    timer();
+
+</script>
+</body>
+</html>

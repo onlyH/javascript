@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function abc(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    abc.prototype.show = function () {
+        alert(this.name)
+    }
+    abc.prototype.showAge = function () {
+        alert(this.name)
+    }
+    var a = new abc('lee', 21);
+    var b = new abc('ddd', 32);
+    a.show();
+    b.show();
+</script>
+</body>
+</html>

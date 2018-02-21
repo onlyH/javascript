@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #999999;
+            opacity: 0;
+        }
+
+        .alert {
+            width: 600px;
+            background-color: #fff;
+            position: fixed;
+            left: 50%;
+            top: 200px;
+            margin-left: -350px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .alert h3 {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 1em;
+        }
+
+        .cancel, .ok {
+            display: inline-block;
+            height: 40px;
+            padding: 0 20px;
+            color: #ffffff;
+            line-height: 40px;
+            text-decoration: none;
+            margin: 0 5px
+        }
+
+        .cancel {
+            background-color: #e08275;
+        }
+
+        .ok {
+            background-color: #8bbb87;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="alert">
+    <h3>lalaalalal</h3>
+    <p>content vvvvdvdfvfdv</p>
+    <div class="btn">
+        <a href="javascript:;" class="cancel">cancel</a>
+        <a href="javascript:;" class="ok">ok</a>
+    </div>
+</div>-->
+<button>点击</button>
+<script>
+    var abc = document.querySelector('.abc');
+    document.querySelector('button').onclick = function () {
+        at({
+            title: 'delete?',
+            content: 'yes,i am sure',
+            cancel: true,
+            ok: true,
+            aniMode: 'fadeInDown',
+            okfn: function () {
+                alert(1)
+            }
+        })
+    };
+    function at(json) {
+
+        var json = json || {};
+        json.aniMode = json.aniMode || 'fadeInDown';
+        //遮罩层
+        var mask = document.createElement('div');
+        mask.className = 'mask animated' + ' fadeIn';
+        mask.old = mask.className;
+        document.body.appendChild(mask);
+
+        //内容
+        var box = document.createElement('div');
+        box.className = 'alert animated' + " " + json.aniMode;
+        box.innerHTML = '<h3>' + json.title + '</h3><p>' + json.content + '</p>';
+
+        var btn = document.createElement('div');
+        if (json.cancel) {
+            // 取消
+            var cancel = document.createElement('a');
+            cancel.className = 'cancel';
+            cancel.innerHTML = 'cancel';
+            cancel.href = 'javascript:;';
+            cancel.onclick = function () {
+                atClose();
+            }
+            btn.appendChild(cancel);
+        }
+
+        //确认
+        var ok = document.createElement('a');
+        ok.className = 'ok';
+        ok.innerHTML = 'ok';
+        ok.href = 'javascript:;';
+        //如果有函数
+        if (json.okfn) {
+            ok.onclick = function () {
+                json.okfn();
+                atClose();
+            }
+        } else {
+            ok.onclick = atClose;
+        }
+        function atClose() {
+            mask.className = mask.old + ' fadeOut';
+            box.className = box.old + ' ' + json.aniMode;
+            setTimeout(function () {
+                document.body.removeChild(mask);
+                document.body.removeChild(box);
+            }, 600)
+        }
+
+        btn.appendChild(ok);
+        box.appendChild(btn);
+        document.body.appendChild(box)
+    }
+
+</script>
+</body>
+</html>

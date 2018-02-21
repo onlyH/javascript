@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            position: relative;
+            width: 400px;
+            height: 20px;
+            background-color: #cccccc;
+            margin: 0 auto;
+        }
+
+        .box1 {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+        }
+        .box2{
+            width: 0;
+            height: 0;
+            opacity: 0;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box1"></div>
+</div>
+<div class="box2"></div>
+
+<script>
+    var box = document.querySelector('.box');
+    var box1 = document.querySelector('.box1');
+    var box2 = document.querySelector('.box2');
+    box1.onmousedown = function (ev) {
+        var e = ev || event;
+        x = e.clientX - box1.offsetLeft;
+
+        document.onmousemove = function (ev) {
+            var e = ev || event;
+            l = e.clientX - x;
+            if (l > box.offsetWidth) {
+                l = box.offsetWidth
+            } else if (l < box.offsetHeight - box1.offsetHeight) {
+                l = box.offsetHeight - box1.offsetHeight;
+            }
+            box1.style.left = l + 'px';
+            var scale = l /box.offsetWidth
+            document.title =scale;
+            box2.style.width = scale * 400 +'px';
+            box2.style.height = scale * 400 +'px';
+            box2.style.opacity = scale;
+        };
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+</script>
+</body>
+</html>

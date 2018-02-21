@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea name="" id="" cols="30" rows="10"></textarea>
+<input type="button" value="运行">
+<input type="button" value="close" onclick="window.close()">
+<script>
+    var textarea = document.querySelector('textarea');
+    var input = document.querySelector('input');
+    input.onclick = function () {
+        var a = window.open('about:blank','_blank');
+        a.document.write(textarea.value);
+    }
+//            /(0\d{2,3}-)?[0-9]\d{7}(-\d{1,5})/
+/*    var rel = /^\w+@[0-9a-z]+\.[a-z]+$/i;
+    if(rel.test(input.value)){
+        alert('yes')
+    }else{
+        alert('no')
+    }*/
+</script>
+</body>
+</html>
+/\w{1,16}/
