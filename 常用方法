@@ -1,0 +1,67 @@
+```
+const obj = {
+  "空调冷冻水供水":"CCCC-离心式冷水机组-true，CCAC-吸收式冷水机组，CCSC-螺杆式冷水机组",
+  "采暖水供水":"CCCC-离心式冷水机组，CCSC-螺杆式冷水机组-true"
+}
+let obj2 = new Object;
+
+for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+        const element = obj[key];
+        obj2[key] = new Array;
+        const tmp = element.split('，')
+        tmp.forEach(i => {
+            const [value, label, select] = i.split('-')
+            obj2[key].push({
+                label,
+                value,
+                select
+            })
+        })
+    }
+}
+console.log(obj2)
+```
+```
+arr.map(i=>`brandID=${i.brandID}`).join(' or ')
+```
+```
+var a = [1,2]
+var b = [{code:1,name:'苹果’},{code:2,name:'梨子'},{code:3,name:'香蕉'}]
+b.filter(item =>a.includes(item.code)).map(item => item.name).join(',')
+```
+```
+tools.flattenKeys = function (obj) {
+  if(obj == undefined) return
+  let res = {}
+  function isObject(val) {
+    return typeof val === 'object' && !Array.isArray(val)
+  }
+
+  function digKeys(prev, obj) {
+    Object.entries(obj).forEach(([key, value]) => {
+      const currentKey = prev ? `${prev}.${key}` : key
+      if (isObject(value)) {
+        digKeys(currentKey, value)
+      } else {
+        res[currentKey] = value
+      }
+    })
+  }
+
+  digKeys('', obj)
+  return res
+}
+function dateToDate(date) {
+  var sDate = new Date();
+  if (typeof date == 'object' && typeof new Date().getMonth == "function") {
+    sDate = date;
+  } else if (typeof date == "string") {
+    var arr = date.split('-');
+    if (arr.length == 3) {
+      sDate = new Date(arr[0] + '-' + arr[1] + '-' + arr[2]);
+    }
+  }
+  return sDate;
+}
+```
