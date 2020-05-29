@@ -8,28 +8,31 @@
           <el-breadcrumb-item>{{this.$route.query.BrandCname}}：</el-breadcrumb-item>
         </el-breadcrumb>
         <template v-for="i in system">
-          <span v-for="classItem in i.DefClass" :key="classItem.Code" v-show="classItem.show" class="select">{{classItem.AliasName}}
+          <span v-for="classItem in i.DefClass" :key="classItem.Code + classItem.AliasName" v-show="classItem.show"
+                class="select">{{classItem.AliasName}}
             <i class="el-icon-close" @click="deleteCurrent(classItem)"></i>
           </span>
         </template>
         <span class="total poa">共<b>{{total}}</b>件相关产品</span>
       </div>
 
-      <div class="device-sys" v-for="systemItem in system" :key="systemItem.Code">
+      <div class="device-sys" v-for="systemItem in system" :key="systemItem.Code + systemItem.AliasName">
         <div class="left">{{systemItem.AliasName}}:</div>
         <div class="main">
           <ul>
             <li v-for="(group,index) in systemItem.DefClass"
                 style="cursor: pointer"
-                :key="group.Code"
-                v-show="index < limitSys"
+                :key="group.Code + group.AliasName"
+                v-show="index < systemItem.limitSys"
                 @click="currentSys(group)"
+                :title="group.AliasName"
                 :class="group.show ? 'light':''">
               {{group.AliasName}}
             </li>
           </ul>
         </div>
-        <div class="right" @click="allData(systemItem)" :class="systemItem.more? 'dark' :'light'">
+        <div class="right" @click="allData(systemItem,systemItem.DefClass.length)"
+             :class="systemItem.more? 'dark' :'light'">
           <p style="cursor: pointer;">{{systemItem.more?'更多':'收起'}}
             <span :class="systemItem.more?'el-icon-caret-bottom':'el-icon-caret-top'"></span>
           </p>
@@ -60,7 +63,7 @@
 
     data() {
       return {
-        limitSys: 14,
+        // limitSys: 14,
         system: [],
         total: 0,
         table: [],
@@ -81,10 +84,11 @@
         }
         classQueryByBrand(param, res => {
           this.system = res.Content ? res.Content.map(j => {
-              j.more = true
-              j.DefClass.forEach((k, index) => {
-                k.show = false
-              })
+            j.more = true
+            j.limitSys = 14
+            j.DefClass.forEach((k, index) => {
+              k.show = false
+            })
             return j
           }) : []
         })
@@ -109,8 +113,9 @@
           this.getDate()
         })
       },
-      allData(systemItem) {
-       systemItem.more = systemItem.more?false:true
+      allData(systemItem, length) {
+        systemItem.more = systemItem.more ? false : true
+        systemItem.limitSys = systemItem.more ? 14 : length
       },
       currentSys(group) {
         this.defClassList = []
@@ -120,7 +125,7 @@
           }
         })
         this.defClassList.forEach(item => {
-          item.show = item.Code == group.Code?true:false
+          item.show = item.Code == group.Code ? true : false
         })
         let params = {
           GroupId: this.dictionary.groupId,
@@ -217,8 +222,8 @@
           li {
             display: inline-block;
             line-height: 25px;
-            max-width: 98px;
-            /*min-width: 80px;*/
+            max-width: 97px;
+            min-width: 80px;
             text-align: left;
             overflow: hidden;
             text-overflow: ellipsis;
